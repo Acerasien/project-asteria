@@ -79,3 +79,30 @@ export async function updateGuestAction(id: string, _previousState: GuestActionS
   redirect(`/dashboard/guests/${id}?updated=1`);
 }
 
+export async function deleteGuestAction(id: string): Promise<GuestActionState> {
+  await verifySession("guests:manage");
+
+  try {
+    const outcome = await db.transaction(async (tx) => {
+      const [current] = await tx.select({ id: guests.id }).from(guests).where(eq(guests.id, id)).for("update").limit(1);
+      if (!current) return "Catatan tamu tidak ditemukan.";
+      await tx.delete(guests).where(eq(guests.id, id));
+      return null;
+    });
+    if (outcome) return { status: "error", message: outcome };
+  } catch (error) {
+    const code = typeof error === "object" && error && "code" in error ? String(error.code) : "";
+    if (code === "23503") {
+      return {
+        status: "error",
+        message: "Tamu ini tidak dapat dihapus karena memiliki riwayat reservasi. Batalkan atau hapus reservasi mereka terlebih dahulu.",
+      };
+    }
+    return { status: "error", message: "Kami tidak dapat menghapus catatan tamu. Silakan coba lagi." };
+  }
+
+  revalidatePath("/dashboard/guests");
+  revalidatePath("/dashboard/reservations/new");
+  redirect("/dashboard/guests");
+}
+
