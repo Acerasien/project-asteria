@@ -82,22 +82,6 @@ export function ImportForm() {
     invalid: 0,
   });
 
-  const handleDownloadTemplate = () => {
-    const headers =
-      "Nama Lengkap,Jenis Kelamin,Telepon,Email,Nomor Identitas,Catatan\n" +
-      "Budi Santoso,Laki-laki,+628123456789,budi@example.com,1234567890123456,Tamu VIP\n" +
-      "Siti Aminah,Perempuan,+628987654321,siti@example.com,3210987654321098,Alergi kacang";
-    const blob = new Blob(["\uFEFF" + headers], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.setAttribute("href", url);
-    link.setAttribute("download", "templat_impor_tamu.csv");
-    link.style.visibility = "hidden";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
@@ -437,18 +421,18 @@ export function ImportForm() {
               <div>
                 <h2>Format Kolom Templat</h2>
                 <p className={styles.cardSubHeader}>
-                  Kolom berikut wajib ada dan berurutan agar data dapat terimpor dengan benar.
+                  Unduh templat Excel (.xlsx), isi data tamu Anda, lalu ekspor sebagai file CSV (pemisah koma atau titik koma) sebelum diunggah.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={handleDownloadTemplate}
+              <a
+                href="/templat_impor_tamu.xlsx"
+                download="templat_impor_tamu.xlsx"
                 className={styles.secondaryButton}
-                style={{ alignSelf: "flex-start" }}
+                style={{ alignSelf: "flex-start", textDecoration: "none" }}
               >
                 <Download size={15} style={{ marginRight: 6, verticalAlign: "middle" }} />
-                Unduh templat CSV
-              </button>
+                Unduh templat Excel (.xlsx)
+              </a>
             </div>
             <code className={styles.templateCode}>
               Nama Lengkap,Jenis Kelamin,Telepon,Email,Nomor Identitas,Catatan

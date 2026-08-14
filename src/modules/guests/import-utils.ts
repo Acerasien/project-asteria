@@ -1,7 +1,24 @@
 export function parseCSV(text: string): string[][] {
+  // Auto-detect delimiter: count commas and semicolons on the first line
+  const firstLine = text.split(/\r?\n/)[0] ?? "";
+  let commaCount = 0;
+  let semicolonCount = 0;
+  let inQuotes = false;
+  
+  for (let i = 0; i < firstLine.length; i++) {
+    const char = firstLine[i];
+    if (char === '"') inQuotes = !inQuotes;
+    else if (!inQuotes) {
+      if (char === ',') commaCount++;
+      else if (char === ';') semicolonCount++;
+    }
+  }
+  
+  const delimiter = semicolonCount > commaCount ? ';' : ',';
+
   const lines: string[][] = [];
   let row: string[] = [];
-  let inQuotes = false;
+  inQuotes = false;
   let currentValue = "";
 
   for (let i = 0; i < text.length; i++) {
@@ -15,7 +32,7 @@ export function parseCSV(text: string): string[][] {
       } else {
         inQuotes = !inQuotes;
       }
-    } else if (char === ',' && !inQuotes) {
+    } else if (char === delimiter && !inQuotes) {
       row.push(currentValue);
       currentValue = "";
     } else if ((char === '\r' || char === '\n') && !inQuotes) {

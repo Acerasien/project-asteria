@@ -11,6 +11,15 @@ describe("import-utils parseCSV", () => {
     ]);
   });
 
+  it("parses CSV rows with semicolons (Excel Indonesian default)", () => {
+    const csv = "Name;Gender;Phone\nBudi;MALE;+6281\nSiti;FEMALE;+6282";
+    expect(parseCSV(csv)).toEqual([
+      ["Name", "Gender", "Phone"],
+      ["Budi", "MALE", "+6281"],
+      ["Siti", "FEMALE", "+6282"],
+    ]);
+  });
+
   it("handles carriage returns", () => {
     const csv = "Name,Gender\r\nBudi,MALE\r\nSiti,FEMALE";
     expect(parseCSV(csv)).toEqual([
