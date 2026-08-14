@@ -164,8 +164,8 @@ export function RoomForm({ action, roomTypes, defaults = {}, submitLabel }: { ac
         <div className={styles.fieldLabelRow}>
           <span>Nomor kasur</span>
         </div>
-        <input name="roomNumber" maxLength={12} defaultValue={defaults.bedNumber} aria-invalid={Boolean(error("roomNumber"))} required />
-        {error("roomNumber") ? <small className={styles.fieldError}>{error("roomNumber")}</small> : null}
+        <input name="roomNumber" maxLength={12} defaultValue={defaults.bedNumber} aria-invalid={Boolean(error("bedNumber") || error("roomNumber"))} required />
+        {(error("bedNumber") || error("roomNumber")) ? <small className={styles.fieldError}>{error("bedNumber") || error("roomNumber")}</small> : null}
       </div>
 
       <div className={styles.field}>

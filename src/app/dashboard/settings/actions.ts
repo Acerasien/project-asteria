@@ -147,7 +147,9 @@ export async function deleteLocationAction(id: string, _state: SettingsActionSta
 
 export async function createRoomAction(_state: SettingsActionState, formData: FormData): Promise<SettingsActionState> {
   await verifySession("rooms:manage");
+  console.log("DATABASE_URL inside Next.js:", process.env.DATABASE_URL);
   const parsed = roomInputFromForm(formData); // actually creates a bed now
+  console.log("createRoomAction parsed data:", parsed.success ? parsed.data : parsed.error.flatten());
   if (!parsed.success) return validationState(parsed.error);
   let id: string;
   try {

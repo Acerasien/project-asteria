@@ -26,7 +26,7 @@ export const locationInputSchema = z.object({
 });
 
 export const roomInputSchema = z.object({
-  bedNumber: z.string().trim().min(1, "Masukkan nomor kasur.").max(12, "Nomor kasur harus 12 karakter atau kurang.").regex(/^[A-Za-z0-9-]+$/, "Gunakan huruf, angka, atau tanda hubung saja.").transform((value) => value.toUpperCase()),
+  bedNumber: z.string().trim().min(1, "Masukkan nomor kasur.").max(12, "Nomor kasur harus 12 karakter atau kurang.").regex(/^[A-Za-z0-9- ]+$/, "Gunakan huruf, angka, spasi, atau tanda hubung saja.").transform((value) => value.toUpperCase()),
   roomId: z.string().uuid("Pilih kamar."),
   status: z.enum(["CLEAN", "DIRTY", "MAINTENANCE", "OUT_OF_ORDER"]),
   isTemporary: z.boolean().default(false),
