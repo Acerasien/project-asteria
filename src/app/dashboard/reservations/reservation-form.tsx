@@ -96,6 +96,30 @@ export function ReservationForm({
 
   const effectiveSelectedRoom = availableRooms.some((r) => r.id === selectedRoomId) ? selectedRoomId : "";
 
+  const groupedRooms = useMemo(() => {
+    const groups: Record<string, {
+      roomName: string;
+      floor: string | null;
+      isMixedGender: boolean;
+      beds: typeof availableRooms;
+    }> = {};
+
+    availableRooms.forEach((bed) => {
+      const key = bed.roomId;
+      if (!groups[key]) {
+        groups[key] = {
+          roomName: bed.type,
+          floor: bed.floor,
+          isMixedGender: Boolean(bed.isMixedGender),
+          beds: [],
+        };
+      }
+      groups[key].beds.push(bed);
+    });
+
+    return Object.values(groups);
+  }, [availableRooms]);
+
   return (
     <form action={formAction} className={styles.form}>
       {state.message ? <div className={styles.formMessage} data-status={state.status} role="alert">{state.message}</div> : null}
@@ -128,10 +152,22 @@ export function ReservationForm({
                   : "Tidak ada kasur tersedia untuk tanggal ini"
                 : "Pilih kasur"}
             </option>
-            {availableRooms.map((room) => (
-              <option value={room.id} key={room.id}>
-                Kasur {room.number} · {room.type}{room.floor ? ` (${room.floor})` : ""}{room.isMixedGender ? " · [Bisa Campur]" : ""} · {statusLabels[room.status]}
-              </option>
+            {groupedRooms.map((group) => (
+              <optgroup
+                label={`${group.roomName}${group.floor ? ` (${group.floor})` : ""}${group.isMixedGender ? " · [Bisa Campur]" : ""}`}
+                key={group.roomName}
+              >
+                {group.beds.map((bed) => {
+                  const bedLabel = bed.number.toLowerCase().startsWith("kasur")
+                    ? bed.number
+                    : `Kasur ${bed.number}`;
+                  return (
+                    <option value={bed.id} key={bed.id}>
+                      {bedLabel} · {statusLabels[bed.status]}
+                    </option>
+                  );
+                })}
+              </optgroup>
             ))}
           </select>
           <small className={styles.hint}>
