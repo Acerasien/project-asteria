@@ -17,9 +17,9 @@ export const reservationInputSchema = z
   });
 
 export const createReservationSchema = reservationInputSchema.refine(
-  (value) => value.checkInDate >= hotelDate(),
+  (value) => value.checkInDate >= hotelDate(-1),
   {
-    message: "Tanggal check-in tidak boleh di masa lalu.",
+    message: "Tanggal check-in tidak boleh sebelum kemarin.",
     path: ["checkInDate"],
   }
 );

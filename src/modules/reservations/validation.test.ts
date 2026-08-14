@@ -5,7 +5,8 @@ import { hotelDate } from "@/lib/hotel-date";
 const today = hotelDate();
 const tomorrow = hotelDate(1);
 const dayAfter = hotelDate(2);
-const pastDate = hotelDate(-1);
+const yesterday = hotelDate(-1);
+const beforeYesterday = hotelDate(-2);
 
 const validInput = {
   guestId: "7fc20c6a-bca5-4a76-a590-9a7e485b82df",
@@ -30,13 +31,14 @@ describe("reservation input validation", () => {
   });
 
   describe("create reservation schema validation", () => {
-    it("allows today or future check-in dates", () => {
+    it("allows yesterday, today, or future check-in dates", () => {
+      expect(createReservationSchema.safeParse({ ...validInput, checkInDate: yesterday, checkOutDate: today }).success).toBe(true);
       expect(createReservationSchema.safeParse({ ...validInput, checkInDate: today, checkOutDate: tomorrow }).success).toBe(true);
       expect(createReservationSchema.safeParse({ ...validInput, checkInDate: tomorrow, checkOutDate: dayAfter }).success).toBe(true);
     });
 
-    it("rejects check-in dates in the past", () => {
-      expect(createReservationSchema.safeParse({ ...validInput, checkInDate: pastDate, checkOutDate: tomorrow }).success).toBe(false);
+    it("rejects check-in dates before yesterday", () => {
+      expect(createReservationSchema.safeParse({ ...validInput, checkInDate: beforeYesterday, checkOutDate: today }).success).toBe(false);
     });
   });
 });
