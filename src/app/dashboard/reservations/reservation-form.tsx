@@ -18,7 +18,7 @@ const statusLabels: Record<string, string> = {
 
 type OptionData = {
   guests: { id: string; name: string; phone: string; gender: "MALE" | "FEMALE"; idNumber: string }[];
-  rooms: { id: string; roomId: string; number: string; floor: string | null; status: "CLEAN" | "DIRTY" | "MAINTENANCE" | "OUT_OF_ORDER"; type: string; isMixedGender?: boolean }[];
+  rooms: { id: string; roomId: string; number: string; floor: string | null; status: "CLEAN" | "DIRTY" | "MAINTENANCE" | "OUT_OF_ORDER"; type: string; isMixedGender?: boolean; isTemporary?: boolean; isActive?: boolean }[];
   bookings?: { id: string; bedId: string; roomId: string; guestGender: "MALE" | "FEMALE"; checkInDate: string; checkOutDate: string }[];
 };
 
@@ -63,10 +63,14 @@ export function ReservationForm({
   );
 
   const availableRooms = useMemo(() => {
+    const isRoomActive = (room: OptionData["rooms"][number]) => room.isActive || room.id === defaults.roomId;
+
     if (!checkInDate || !checkOutDate || checkOutDate <= checkInDate) {
-      return options.rooms;
+      return options.rooms.filter(isRoomActive);
     }
     return options.rooms.filter((room) => {
+      if (!isRoomActive(room)) return false;
+
       // 1. Bed must not be occupied directly on these dates
       const isBedOccupied = (options.bookings ?? []).some(
         (b) =>
@@ -92,7 +96,7 @@ export function ReservationForm({
 
       return true;
     });
-  }, [options.rooms, options.bookings, checkInDate, checkOutDate, selectedGuest, defaults.id]);
+  }, [options.rooms, options.bookings, checkInDate, checkOutDate, selectedGuest, defaults.id, defaults.roomId]);
 
   const effectiveSelectedRoom = availableRooms.some((r) => r.id === selectedRoomId) ? selectedRoomId : "";
 
@@ -158,9 +162,10 @@ export function ReservationForm({
                 key={group.roomName}
               >
                 {group.beds.map((bed) => {
-                  const bedLabel = bed.number.toLowerCase().startsWith("kasur")
+                  const normalizedNumber = bed.number.toLowerCase().startsWith("kasur")
                     ? bed.number
                     : `Kasur ${bed.number}`;
+                  const bedLabel = `${normalizedNumber}${bed.isTemporary ? " (Sementara)" : ""}`;
                   return (
                     <option value={bed.id} key={bed.id}>
                       {bedLabel} · {statusLabels[bed.status]}

@@ -29,6 +29,8 @@ export const roomInputSchema = z.object({
   bedNumber: z.string().trim().min(1, "Masukkan nomor kasur.").max(12, "Nomor kasur harus 12 karakter atau kurang.").regex(/^[A-Za-z0-9-]+$/, "Gunakan huruf, angka, atau tanda hubung saja.").transform((value) => value.toUpperCase()),
   roomId: z.string().uuid("Pilih kamar."),
   status: z.enum(["CLEAN", "DIRTY", "MAINTENANCE", "OUT_OF_ORDER"]),
+  isTemporary: z.boolean().default(false),
+  isActive: z.boolean().default(true),
 });
 
 const staffBase = z.object({
@@ -61,7 +63,16 @@ export function locationInputFromForm(formData: FormData) {
 }
 
 export function roomInputFromForm(formData: FormData) {
-  return roomInputSchema.safeParse({ bedNumber: formData.get("roomNumber"), roomId: formData.get("roomTypeId"), status: formData.get("status") });
+  const isTemp = formData.get("isTemporary") === "on" || formData.get("isTemporary") === "true";
+  const isAct = formData.get("isActive") === "on" || formData.get("isActive") === "true";
+
+  return roomInputSchema.safeParse({
+    bedNumber: formData.get("roomNumber"),
+    roomId: formData.get("roomTypeId"),
+    status: formData.get("status"),
+    isTemporary: isTemp,
+    isActive: isAct,
+  });
 }
 
 export function staffInputFromForm(formData: FormData, editing: boolean) {

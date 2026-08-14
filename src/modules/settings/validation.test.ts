@@ -6,7 +6,8 @@ describe("settings input validation", () => {
     const validUuid = "7fc20c6a-bca5-4a76-a590-9a7e485b82df";
     expect(roomTypeInputSchema.parse({ name: " Deluxe   King ", locationId: validUuid, isMixedGender: true, description: "" })).toMatchObject({ name: "Deluxe King", locationId: validUuid, isMixedGender: true, description: null });
     expect(locationInputSchema.parse({ name: " Lantai   1 ", description: "" })).toMatchObject({ name: "Lantai 1", description: null });
-    expect(roomInputSchema.parse({ bedNumber: " a-12 ", roomId: validUuid, status: "CLEAN" })).toMatchObject({ bedNumber: "A-12" });
+    expect(roomInputSchema.parse({ bedNumber: " a-12 ", roomId: validUuid, status: "CLEAN" })).toMatchObject({ bedNumber: "A-12", isTemporary: false, isActive: true });
+    expect(roomInputSchema.parse({ bedNumber: "A-12", roomId: validUuid, status: "CLEAN", isTemporary: true, isActive: false })).toMatchObject({ bedNumber: "A-12", isTemporary: true, isActive: false });
   });
 
   it("validates roomTypeCreateInputSchema limits", () => {

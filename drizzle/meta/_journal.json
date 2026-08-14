@@ -8,6 +8,13 @@
       "when": 1786590361719,
       "tag": "0000_absurd_sugar_man",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1786689625518,
+      "tag": "0001_productive_firestar",
+      "breakpoints": true
     }
   ]
 }

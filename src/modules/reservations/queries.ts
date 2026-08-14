@@ -63,6 +63,8 @@ export async function getReservationOptions(initialGuestId?: string) {
         status: beds.status,
         type: rooms.name,
         isMixedGender: rooms.isMixedGender,
+        isTemporary: beds.isTemporary,
+        isActive: beds.isActive,
       })
       .from(beds)
       .innerJoin(rooms, eq(beds.roomId, rooms.id))

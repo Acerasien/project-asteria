@@ -151,8 +151,8 @@ export async function createRoomAction(_state: SettingsActionState, formData: Fo
   if (!parsed.success) return validationState(parsed.error);
   let id: string;
   try {
-    const { bedNumber, roomId, status } = parsed.data;
-    const [created] = await db.insert(beds).values({ bedNumber, roomId, status }).returning({ id: beds.id });
+    const { bedNumber, roomId, status, isTemporary, isActive } = parsed.data;
+    const [created] = await db.insert(beds).values({ bedNumber, roomId, status, isTemporary, isActive }).returning({ id: beds.id });
     if (!created) return { status: "error", message: "Kami tidak dapat membuat kasur." };
     id = created.id;
   } catch (error) { return { status: "error", message: uniqueMessage(error, "room") }; }
@@ -167,12 +167,28 @@ export async function updateRoomAction(id: string, _state: SettingsActionState, 
   if (!parsed.success) return validationState(parsed.error);
   try {
     const outcome = await db.transaction(async (tx) => {
-      const [bed] = await tx.select({ id: beds.id }).from(beds).where(eq(beds.id, id)).for("update").limit(1);
+      const [bed] = await tx.select({ id: beds.id, isActive: beds.isActive }).from(beds).where(eq(beds.id, id)).for("update").limit(1);
       if (!bed) return "Kasur tidak ditemukan.";
       const [active] = await tx.select({ id: reservations.id }).from(reservations).where(and(eq(reservations.bedId, id), eq(reservations.status, "CHECKED_IN"))).for("update").limit(1);
       if (!canSetRoomStatus(parsed.data.status, Boolean(active))) return "Lakukan check-out tamu saat ini sebelum mengatur status pemeliharaan.";
-      const { bedNumber, roomId, status } = parsed.data;
-      await tx.update(beds).set({ bedNumber, roomId, status, updatedAt: new Date() }).where(eq(beds.id, id));
+
+      if (bed.isActive && !parsed.data.isActive) {
+        const [activeBookings] = await tx
+          .select({ value: count() })
+          .from(reservations)
+          .where(
+            and(
+              eq(reservations.bedId, id),
+              inArray(reservations.status, ["CONFIRMED", "CHECKED_IN"])
+            )
+          );
+        if (activeBookings && (activeBookings.value ?? 0) > 0) {
+          return `Kasur tidak dapat dinonaktifkan karena memiliki ${activeBookings.value} reservasi aktif atau mendatang. Harap pindahkan reservasi tersebut terlebih dahulu.`;
+        }
+      }
+
+      const { bedNumber, roomId, status, isTemporary, isActive } = parsed.data;
+      await tx.update(beds).set({ bedNumber, roomId, status, isTemporary, isActive, updatedAt: new Date() }).where(eq(beds.id, id));
       return null;
     });
     if (outcome) return { status: "error", message: outcome };

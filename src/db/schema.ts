@@ -89,6 +89,8 @@ export const beds = pgTable(
       .notNull()
       .references(() => rooms.id, { onDelete: "restrict" }),
     status: roomStatus("status").notNull().default("CLEAN"),
+    isTemporary: boolean("is_temporary").notNull().default(false),
+    isActive: boolean("is_active").notNull().default(true),
     ...timestamps,
   },
   (table) => [

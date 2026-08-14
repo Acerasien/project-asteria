@@ -146,7 +146,7 @@ export function RoomTypeForm({
   </form>;
 }
 
-export function RoomForm({ action, roomTypes, defaults = {}, submitLabel }: { action: FormAction; roomTypes: { id: string; name: string }[]; defaults?: { bedNumber?: string; roomId?: string; status?: RoomStatus }; submitLabel: string }) {
+export function RoomForm({ action, roomTypes, defaults = {}, submitLabel }: { action: FormAction; roomTypes: { id: string; name: string }[]; defaults?: { bedNumber?: string; roomId?: string; status?: RoomStatus; isTemporary?: boolean; isActive?: boolean }; submitLabel: string }) {
   const [state, formAction] = useActionState(action, { status: "idle" } satisfies SettingsActionState);
   const error = (field: string) => state.fieldErrors?.[field]?.[0];
 
@@ -168,8 +168,6 @@ export function RoomForm({ action, roomTypes, defaults = {}, submitLabel }: { ac
         {error("roomNumber") ? <small className={styles.fieldError}>{error("roomNumber")}</small> : null}
       </div>
 
-
-
       <div className={styles.field}>
         <div className={styles.fieldLabelRow}>
           <span>Kamar</span>
@@ -189,6 +187,26 @@ export function RoomForm({ action, roomTypes, defaults = {}, submitLabel }: { ac
           {statusOptions.map((option) => <option value={option.value} key={option.value}>{option.label}</option>)}
         </select>
         {error("status") ? <small className={styles.fieldError}>{error("status")}</small> : null}
+      </div>
+
+      <div className={styles.checkboxField}>
+        <label className={styles.checkboxLabel}>
+          <input name="isTemporary" type="checkbox" defaultChecked={defaults.isTemporary} />
+          <div>
+            <strong>Kasur Sementara</strong>
+            <p style={{ margin: "var(--space-1) 0 0", color: "var(--color-ink-secondary)", fontSize: "0.75rem", fontWeight: 450 }}>Kasur ini ditambahkan sementara untuk kapasitas tambahan.</p>
+          </div>
+        </label>
+      </div>
+
+      <div className={styles.checkboxField}>
+        <label className={styles.checkboxLabel}>
+          <input name="isActive" type="checkbox" defaultChecked={defaults.isActive ?? true} />
+          <div>
+            <strong>Kasur Aktif</strong>
+            <p style={{ margin: "var(--space-1) 0 0", color: "var(--color-ink-secondary)", fontSize: "0.75rem", fontWeight: 450 }}>Kasur dapat dipilih untuk pembuatan reservasi baru.</p>
+          </div>
+        </label>
       </div>
     </div>
 

@@ -14,8 +14,8 @@ export async function getDashboardData() {
       db.select({ value: count() }).from(reservations).where(and(eq(reservations.checkInDate, today), eq(reservations.status, "CONFIRMED"))),
       db.select({ value: count() }).from(reservations).where(and(eq(reservations.checkOutDate, today), eq(reservations.status, "CHECKED_IN"))),
       db.select({ value: count() }).from(reservations).where(eq(reservations.status, "CHECKED_IN")),
-      db.select({ value: count() }).from(beds),
-      db.select({ value: count() }).from(beds).where(eq(beds.status, "DIRTY")),
+      db.select({ value: count() }).from(beds).where(eq(beds.isActive, true)),
+      db.select({ value: count() }).from(beds).where(and(eq(beds.status, "DIRTY"), eq(beds.isActive, true))),
       db
         .select({
           id: reservations.id,
@@ -62,7 +62,12 @@ export async function getDashboardData() {
         .from(beds)
         .leftJoin(rooms, eq(beds.roomId, rooms.id))
         .leftJoin(locations, eq(rooms.locationId, locations.id))
-        .where(inArray(beds.status, ["DIRTY", "MAINTENANCE", "OUT_OF_ORDER"]))
+        .where(
+          and(
+            inArray(beds.status, ["DIRTY", "MAINTENANCE", "OUT_OF_ORDER"]),
+            eq(beds.isActive, true),
+          ),
+        )
         .orderBy(asc(locations.name), asc(beds.bedNumber)),
     ]);
 

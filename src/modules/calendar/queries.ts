@@ -1,4 +1,4 @@
-import { and, asc, eq, gt, inArray, lt, type SQL } from "drizzle-orm";
+import { and, asc, eq, exists, gt, inArray, lt, or, type SQL } from "drizzle-orm";
 import { db } from "@/db/client";
 import { guests, reservations, beds, rooms, locations } from "@/db/schema";
 import { verifySession } from "@/lib/dal";
@@ -11,6 +11,24 @@ export async function getCalendarData(searchParams: CalendarSearchParams) {
   const roomConditions: SQL[] = [];
   if (window.location) roomConditions.push(eq(locations.name, window.location));
   if (window.status) roomConditions.push(eq(beds.status, window.status));
+
+  const activeOrBookedCondition = or(
+    eq(beds.isActive, true),
+    exists(
+      db
+        .select()
+        .from(reservations)
+        .where(
+          and(
+            eq(reservations.bedId, beds.id),
+            inArray(reservations.status, ["CONFIRMED", "CHECKED_IN", "CHECKED_OUT"]),
+            lt(reservations.checkInDate, window.endExclusive),
+            gt(reservations.checkOutDate, window.start),
+          ),
+        ),
+    ),
+  );
+  roomConditions.push(activeOrBookedCondition!);
 
   const roomRows = await db
     .select({ id: beds.id, number: beds.bedNumber, location: locations.name, status: beds.status, type: rooms.name })
