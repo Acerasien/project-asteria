@@ -16,6 +16,7 @@ import { guestInputSchema, type GuestInput } from "@/modules/guests/validation";
 import {
   checkGuestDuplicatesAction,
   importGuestsAction,
+  parseUploadFileAction,
   type DuplicateCheckResult,
 } from "./actions";
 import styles from "./import.module.css";
@@ -99,29 +100,38 @@ export function ImportForm() {
 
     if (file) {
       setIsValidating(true);
-      const reader = new FileReader();
-      reader.onload = async (event) => {
-        const text = event.target?.result as string;
-        await validateContent(text);
-      };
-      reader.onerror = () => {
-        setErrorMsg("Gagal membaca file CSV.");
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+        const res = await parseUploadFileAction(formData);
+        if (res.status === "error") {
+          setErrorMsg(res.message ?? "Gagal memproses file.");
+          setIsValidating(false);
+          return;
+        }
+        if (res.rows) {
+          await validateContent(res.rows);
+        } else {
+          setErrorMsg("File kosong atau tidak dapat diuraikan.");
+          setIsValidating(false);
+        }
+      } catch {
+        setErrorMsg("Terjadi kesalahan koneksi saat memproses file di server.");
         setIsValidating(false);
-      };
-      reader.readAsText(file);
+      }
     } else if (rawContent) {
       setIsValidating(true);
-      await validateContent(rawContent);
+      const allLines = parseCSV(rawContent);
+      await validateContent(allLines);
     } else {
-      setErrorMsg("Silakan pilih file CSV atau tempel data CSV terlebih dahulu.");
+      setErrorMsg("Silakan pilih file CSV/Excel atau tempel data CSV terlebih dahulu.");
     }
   };
 
-  const validateContent = async (text: string) => {
+  const validateContent = async (allLines: string[][]) => {
     try {
-      const allLines = parseCSV(text);
       if (allLines.length < 2) {
-        setErrorMsg("Format CSV tidak valid. Harus memiliki baris header dan minimal satu baris data.");
+        setErrorMsg("Format file tidak valid. Harus memiliki baris header dan minimal satu baris data.");
         setIsValidating(false);
         return;
       }
@@ -332,7 +342,7 @@ export function ImportForm() {
 
             <div className={styles.sumberDataContainer}>
               <div className={styles.optionBox}>
-                <h3>Pilih File CSV</h3>
+                <h3>Pilih File CSV atau Excel</h3>
                 <div
                   className={`${styles.dragDropZone} ${isDragging ? styles.dragOver : ""} ${file ? styles.hasFile : ""}`}
                   onDragOver={handleDragOver}
@@ -344,19 +354,19 @@ export function ImportForm() {
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") triggerFileInput();
                   }}
-                  aria-label="Pilih file CSV"
+                  aria-label="Pilih file CSV atau Excel"
                 >
                   <input
                     type="file"
                     id="fileInput"
-                    accept=".csv"
+                    accept=".csv, .xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                     className={styles.hiddenFileInput}
                     onChange={handleFileChange}
                     disabled={isValidating}
                   />
                   <Upload size={28} className={styles.uploadIcon} />
                   <span className={styles.dragDropText}>
-                    {file ? file.name : "Seret & lepas file CSV di sini, atau klik untuk memilih"}
+                    {file ? file.name : "Seret & lepas file CSV atau Excel di sini, atau klik untuk memilih"}
                   </span>
                   {file ? (
                     <button
@@ -370,7 +380,7 @@ export function ImportForm() {
                       Hapus File
                     </button>
                   ) : (
-                    <em>Pastikan file berformat pemisah koma (.csv)</em>
+                    <em>Mendukung format file .csv dan .xlsx (Excel)</em>
                   )}
                 </div>
               </div>

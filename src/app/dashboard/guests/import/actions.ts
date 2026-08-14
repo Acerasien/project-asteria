@@ -7,6 +7,14 @@ import { db } from "@/db/client";
 import { guests } from "@/db/schema";
 import { verifySession } from "@/lib/dal";
 import { guestInputSchema, type GuestInput } from "@/modules/guests/validation";
+import { writeFileSync, unlinkSync } from "fs";
+import { join } from "path";
+import { tmpdir } from "os";
+import { execFile } from "child_process";
+import { promisify } from "util";
+import { parseCSV } from "@/modules/guests/import-utils";
+
+const execFileAsync = promisify(execFile);
 
 export type DuplicateCheckResult = {
   id: string;
@@ -120,4 +128,57 @@ export async function importGuestsAction(
   revalidatePath("/dashboard/guests");
   revalidatePath("/dashboard/reservations/new");
   redirect(`/dashboard/guests?imported=${count}`);
+}
+
+export async function parseUploadFileAction(
+  formData: FormData
+): Promise<{ status: "success" | "error"; rows?: string[][]; message?: string }> {
+  await verifySession("guests:manage");
+
+  const file = formData.get("file");
+  if (!file || !(file instanceof File)) {
+    return { status: "error", message: "File tidak ditemukan dalam unggahan." };
+  }
+
+  const ext = file.name.split(".").pop()?.toLowerCase();
+  if (ext !== "csv" && ext !== "xlsx") {
+    return { status: "error", message: "Format file tidak didukung. Harap unggah file .csv atau .xlsx." };
+  }
+
+  const tempPath = join(tmpdir(), `upload_${Date.now()}_${file.name}`);
+
+  try {
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    writeFileSync(tempPath, buffer);
+
+    let rows: string[][];
+
+    if (ext === "xlsx") {
+      const { stdout } = await execFileAsync("python", ["scripts/parse_xlsx.py", tempPath]);
+      const result = JSON.parse(stdout);
+      if (!result.success) {
+        return { status: "error", message: `Gagal membaca Excel: ${result.error}` };
+      }
+      rows = result.rows;
+    } else {
+      // Decode CSV content using UTF-8 (handling BOM)
+      let text = buffer.toString("utf-8");
+      if (text.startsWith("\uFEFF")) {
+        text = text.slice(1);
+      }
+      rows = parseCSV(text);
+    }
+
+    return { status: "success", rows };
+  } catch (error) {
+    console.error("File parsing error:", error);
+    return { status: "error", message: "Terjadi kesalahan saat memproses file." };
+  } finally {
+    try {
+      unlinkSync(tempPath);
+    } catch {
+      // ignore
+    }
+  }
 }
