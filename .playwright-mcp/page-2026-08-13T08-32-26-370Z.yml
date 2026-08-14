@@ -1,0 +1,18 @@
+- generic [active] [ref=f1e1]:
+  - main [ref=f1e2]:
+    - region [ref=f1e3]:
+      - paragraph [ref=f1e9]: Operasional Hotel
+      - heading "Selamat datang kembali" [level=1] [ref=f1e10]
+      - paragraph [ref=f1e11]: Masuk untuk mengelola reservasi dan operasional kamar hari ini.
+      - generic [ref=f1e12]:
+        - generic [ref=f1e13]:
+          - generic [ref=f1e14]: Alamat email
+          - textbox "Alamat email" [ref=f1e15]:
+            - /placeholder: nama@hotel.local
+        - generic [ref=f1e16]:
+          - generic [ref=f1e17]: Kata sandi
+          - textbox "Kata sandi" [ref=f1e18]
+        - button "Masuk" [ref=f1e19] [cursor=pointer]
+      - paragraph [ref=f1e20]: Gunakan akun staf hotel Anda. Hubungi administrator jika akses tidak tersedia.
+  - button "Open Next.js Dev Tools" [ref=f1e26] [cursor=pointer]
+  - alert [ref=f1e30]

@@ -1,0 +1,85 @@
+.page { max-width: 96rem; margin: 0 auto; }
+.pageHeader { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-6); margin-bottom: var(--space-4); }
+.pageHeader h1 { margin: 0; font-size: 1.75rem; line-height: 1.2; letter-spacing: -.025em; text-wrap: balance; }
+.pageHeader p { max-width: 65ch; margin: var(--space-2) 0 0; color: var(--color-ink-secondary); }
+.totalRooms { min-height: 2.75rem; display: flex; align-items: center; gap: var(--space-2); padding: 0 var(--space-3); color: var(--color-ink-secondary); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: .8125rem; white-space: nowrap; }
+.totalRooms strong { color: var(--color-ink); font-variant-numeric: tabular-nums; }
+.filterTabs { display: flex; gap: var(--space-1); margin-bottom: var(--space-6); padding: var(--space-1); background: var(--color-surface-subtle); border-radius: var(--radius-md); overflow-x: auto; }
+.filterTabs a { min-height: 2.75rem; display: inline-flex; align-items: center; gap: var(--space-2); padding: 0 var(--space-3); color: var(--color-ink-secondary); border-radius: var(--radius-sm); font-size: .8125rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.filterTabs a:hover { color: var(--color-ink); background: color-mix(in oklch, var(--color-surface) 70%, transparent); }
+.filterTabs a[aria-current="page"] { color: var(--color-accent); background: var(--color-surface); }
+.filterTabs a span { min-width: 1.5rem; height: 1.5rem; display: grid; place-items: center; padding: 0 var(--space-1); color: var(--color-ink-secondary); background: var(--color-border); border-radius: 999px; font-size: .6875rem; font-variant-numeric: tabular-nums; }
+.filterTabs a[aria-current="page"] span { color: var(--color-accent); background: color-mix(in oklch, var(--color-accent) 10%, white); }
+.floors { display: grid; gap: var(--space-8); }
+.floorHeader { margin-bottom: var(--space-3); }
+.floorHeader > div { display: flex; align-items: baseline; gap: var(--space-2); }
+.floorHeader h2, .floorHeader span { margin: 0; }
+.floorHeader h2 { font-size: 1rem; }
+.floorHeader span { color: var(--color-ink-secondary); font-size: .75rem; }
+.roomGrid { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.roomCard { min-width: 15rem; flex: 1 1 16rem; max-width: calc(25% - .5625rem); display: grid; gap: var(--space-4); padding: var(--space-4); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+.roomTop { min-width: 0; display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); }
+.roomTop > span:first-child { min-width: 0; display: grid; }
+.roomTop strong { font-size: .9375rem; font-variant-numeric: tabular-nums; }
+.roomTop small { overflow: hidden; color: var(--color-ink-secondary); font-size: .6875rem; text-overflow: ellipsis; white-space: nowrap; }
+.occupancy { min-height: 3.25rem; display: grid; align-content: center; padding: var(--space-2) var(--space-3); background: var(--color-surface-subtle); border-radius: var(--radius-sm); }
+.occupancy > span { color: var(--color-ink-secondary); font-size: .6875rem; }
+.occupancy > strong, .occupancy > a { color: var(--color-ink); font-size: .8125rem; font-weight: 650; text-decoration: none; }
+.occupancy > a { display: grid; }
+.occupancy > a:hover { color: var(--color-accent); }
+.occupancy > a small { color: var(--color-ink-secondary); font-size: .625rem; font-weight: 500; }
+.occupancy[data-occupied="true"] { background: color-mix(in oklch, var(--color-checked-in) 7%, white); }
+.statusForm { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-2); padding-top: var(--space-3); border-top: 1px solid var(--color-border); }
+.statusForm select, .statusForm button { min-height: 2.75rem; border-radius: var(--radius-sm); font-size: .8125rem; }
+.statusForm select { width: 100%; padding: 0 2rem 0 var(--space-3); color: var(--color-ink); background: var(--color-surface); border: 1px solid var(--color-border); }
+.statusForm button { min-width: 4.75rem; padding: 0 var(--space-3); color: var(--color-accent); background: var(--color-surface); border: 1px solid color-mix(in oklch, var(--color-accent) 35%, var(--color-border)); font-weight: 650; cursor: pointer; }
+.statusForm button:hover { background: color-mix(in oklch, var(--color-accent) 7%, white); }
+.statusForm button:disabled { opacity: .58; cursor: wait; }
+.statusForm p { grid-column: 1 / -1; margin: 0; font-size: .6875rem; }
+.statusForm p[data-status="success"] { color: var(--color-checked-in); }
+.statusForm p[data-status="error"] { color: var(--color-maintenance); }
+.empty { display: grid; justify-items: center; gap: var(--space-2); padding: 5rem var(--space-6); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-align: center; }
+.empty h2, .empty p { margin: 0; }
+.empty h2 { font-size: 1rem; }
+.empty p { color: var(--color-ink-secondary); font-size: .875rem; }
+.empty a { min-height: 2.75rem; display: inline-flex; align-items: center; color: var(--color-accent); font-size: .875rem; font-weight: 650; text-decoration: none; }
+.loadingHeader { display: flex; justify-content: space-between; margin-bottom: var(--space-4); }
+.loadingHeader span { width: 15rem; height: 2.5rem; background: var(--color-border); border-radius: var(--radius-sm); animation: pulse 1.5s ease-in-out infinite; }
+.loadingHeader span:last-child { width: 6rem; }
+.loadingTabs { width: 28rem; height: 3.25rem; margin-bottom: var(--space-6); background: var(--color-border); border-radius: var(--radius-md); animation: pulse 1.5s ease-in-out infinite; }
+.loadingFloor { display: grid; gap: var(--space-3); margin-bottom: var(--space-8); }
+.loadingFloor > span { width: 7rem; height: 1.5rem; background: var(--color-border); border-radius: var(--radius-sm); animation: pulse 1.5s ease-in-out infinite; }
+.loadingFloor > div { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-3); }
+.loadingFloor > div span { height: 12rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+.srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+@keyframes pulse { 50% { opacity: .55; } }
+
+@media (max-width: 75rem) {
+  .roomCard { max-width: calc(33.333% - .5rem); }
+  .loadingFloor > div { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 56rem) {
+  .roomCard { max-width: calc(50% - .375rem); }
+  .loadingFloor > div { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 47.99rem) {
+  .pageHeader { align-items: flex-start; margin-bottom: var(--space-4); }
+  .pageHeader h1 { font-size: 1.5rem; }
+  .pageHeader p { font-size: .875rem; }
+  .totalRooms { min-width: 2.75rem; justify-content: center; padding: 0 var(--space-2); }
+  .totalRooms span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .filterTabs { margin: 0 calc(var(--space-4) * -1) var(--space-6); padding-inline: var(--space-4); border-radius: 0; }
+  .floors { gap: var(--space-6); }
+  .floorHeader { position: sticky; top: 4.25rem; z-index: var(--z-sticky); margin: 0 calc(var(--space-4) * -1) var(--space-3); padding: var(--space-2) var(--space-4); background: color-mix(in oklch, var(--color-app) 94%, transparent); backdrop-filter: blur(.5rem); }
+  .roomGrid { display: grid; grid-template-columns: 1fr; }
+  .roomCard { min-width: 0; max-width: none; }
+  .loadingTabs { width: 100%; }
+  .loadingFloor > div { grid-template-columns: 1fr; }
+  .loadingFloor > div span:nth-child(n+4) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadingHeader span, .loadingTabs, .loadingFloor > span { animation: none; }
+}

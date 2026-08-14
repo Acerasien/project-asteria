@@ -1,0 +1,22 @@
+.badge {
+  width: max-content;
+  min-height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.badge[data-status="CONFIRMED"] { color: var(--color-confirmed); background: color-mix(in oklch, var(--color-confirmed) 8%, white); }
+.badge[data-status="CHECKED_IN"] { color: var(--color-checked-in); background: color-mix(in oklch, var(--color-checked-in) 8%, white); }
+.badge[data-status="CHECKED_OUT"] { color: var(--color-ink-secondary); background: var(--color-surface-subtle); }
+.badge[data-status="CANCELLED"] { color: var(--color-ink-secondary); background: var(--color-surface-subtle); text-decoration: line-through; }
+.badge[data-status="CLEAN"] { color: var(--color-clean); background: color-mix(in oklch, var(--color-clean) 8%, white); }
+.badge[data-status="DIRTY"] { color: var(--color-dirty); background: color-mix(in oklch, var(--color-dirty) 8%, white); }
+.badge[data-status="MAINTENANCE"] { color: var(--color-maintenance); background: color-mix(in oklch, var(--color-maintenance) 8%, white); }
+.badge[data-status="OUT_OF_ORDER"] { color: white; background: var(--color-out-of-order); }

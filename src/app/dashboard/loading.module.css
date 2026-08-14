@@ -1,0 +1,14 @@
+.page { max-width: 96rem; margin: 0 auto; }
+.heading,
+.stat,
+.panels > div,
+.attention { background: linear-gradient(90deg, var(--color-surface-subtle), var(--color-surface), var(--color-surface-subtle)); background-size: 200% 100%; animation: pulse 1.2s ease-in-out infinite; border-radius: var(--radius-md); }
+.heading { width: 18rem; height: 3.75rem; margin-bottom: var(--space-6); }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
+.stat { height: 8.25rem; }
+.panels { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-top: var(--space-4); }
+.panels > div { height: 24rem; }
+.attention { height: 10rem; margin-top: var(--space-4); }
+@keyframes pulse { to { background-position: -200% 0; } }
+@media (max-width: 68rem) { .stats { grid-template-columns: 1fr 1fr; } .panels { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .heading, .stat, .panels > div, .attention { animation: none; } }

@@ -1,0 +1,463 @@
+.page {
+  max-width: 96rem;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.pageHeader h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+
+.pageHeader p {
+  max-width: 65ch;
+  margin: var(--space-2) 0 0;
+  color: var(--color-ink-secondary);
+}
+
+.primaryButton {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-4);
+  color: white;
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 650;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 150ms ease-out;
+  cursor: pointer;
+}
+
+.primaryButton:hover {
+  background: var(--color-accent-hover);
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.searchForm {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1 1 20rem;
+}
+
+.searchField {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-height: 2.75rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0 var(--space-3);
+  color: var(--color-ink-secondary);
+}
+
+.searchField svg {
+  margin-right: var(--space-2);
+  flex: none;
+}
+
+.searchField input {
+  width: 100%;
+  height: 2.5rem;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--color-ink);
+  font-size: 0.875rem;
+}
+
+.searchButton {
+  min-height: 2.75rem;
+  padding: 0 var(--space-4);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color 150ms ease-out, background-color 150ms ease-out;
+}
+
+.searchButton:hover {
+  background: var(--color-surface-subtle);
+  border-color: color-mix(in oklch, var(--color-accent) 30%, var(--color-border));
+}
+
+.clearButton {
+  min-height: 2.75rem;
+  background: transparent;
+  color: var(--color-ink-secondary);
+  border: 0;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  padding: 0 var(--space-2);
+}
+
+.clearButton:hover {
+  color: var(--color-ink);
+  text-decoration: underline;
+}
+
+.dateControls {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.dateControls > button {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--space-3);
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dateControls > button:first-child {
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+
+.dateControls > button:nth-child(2) {
+  border-left: 0;
+  border-right: 0;
+}
+
+.dateControls > button:nth-child(3) {
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.dateControls > button:hover {
+  position: relative;
+  background: var(--color-surface-subtle);
+  border-color: color-mix(in oklch, var(--color-accent) 30%, var(--color-border));
+}
+
+.datePicker {
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: var(--space-3);
+  padding: 0 var(--space-3);
+  color: var(--color-ink-secondary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.datePicker input {
+  min-height: 2.5rem;
+  color: var(--color-ink);
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+/* Grid & Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-4);
+}
+
+.roomCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  transition: border-color 150ms ease-out;
+}
+
+.roomCard:hover {
+  border-color: color-mix(in oklch, var(--color-accent) 28%, var(--color-border));
+}
+
+.roomHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-3);
+}
+
+.roomInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.roomName {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 650;
+  color: var(--color-ink);
+}
+
+.roomLocation {
+  font-size: 0.75rem;
+  color: var(--color-ink-secondary);
+  margin-top: var(--space-1);
+}
+
+.genderBadge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+.genderMixed {
+  background: var(--color-surface-subtle);
+  color: var(--color-ink-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.genderSingle {
+  background: color-mix(in oklch, var(--color-confirmed) 10%, var(--color-surface));
+  color: var(--color-confirmed);
+  border: 1px solid color-mix(in oklch, var(--color-confirmed) 25%, var(--color-border));
+}
+
+/* Beds List */
+.bedsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.bedItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-subtle);
+}
+
+.bedMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bedNumber {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.bedStatusBadge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.125rem var(--space-2);
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+.statusCLEAN {
+  background: color-mix(in oklch, var(--color-clean) 12%, var(--color-surface));
+  color: var(--color-clean);
+}
+
+.statusDIRTY {
+  background: color-mix(in oklch, var(--color-dirty) 12%, var(--color-surface));
+  color: var(--color-dirty);
+}
+
+.statusMAINTENANCE {
+  background: color-mix(in oklch, var(--color-maintenance) 12%, var(--color-surface));
+  color: var(--color-maintenance);
+}
+
+.statusOUT_OF_ORDER {
+  background: color-mix(in oklch, var(--color-out-of-order) 12%, var(--color-surface));
+  color: var(--color-out-of-order);
+}
+
+/* Occupant / Reservation details */
+.bedContent {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8125rem;
+}
+
+.occupied {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.occupantLink {
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.occupantLink:hover {
+  text-decoration: underline;
+}
+
+.occupantSub {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-ink-secondary);
+  font-size: 0.75rem;
+  margin-top: 0.125rem;
+}
+
+.bookingCode {
+  font-variant-numeric: tabular-nums;
+}
+
+.resBadge {
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 0.05rem var(--space-1);
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.resCONFIRMED {
+  background: var(--color-confirmed);
+  color: white;
+}
+
+.resCHECKED_IN {
+  background: var(--color-checked-in);
+  color: white;
+}
+
+.resCHECKED_OUT {
+  background: var(--color-surface-subtle);
+  color: var(--color-ink-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.vacant {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-ink-secondary);
+}
+
+.vacantText {
+  font-size: 0.75rem;
+}
+
+.bookLink {
+  color: var(--color-confirmed);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.bookLink:hover {
+  text-decoration: underline;
+}
+
+.emptyState {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-2);
+  padding: 5rem var(--space-6);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.emptyState h2 {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.emptyState p {
+  margin: 0;
+  color: var(--color-ink-secondary);
+  font-size: 0.875rem;
+}
+
+.emptyState a {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-accent);
+  font-size: 0.875rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.emptyState a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 48rem) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+  }
+
+  .searchForm {
+    flex: none;
+  }
+
+  .dateControls {
+    width: 100%;
+  }
+
+  .dateControls > button {
+    flex: 1;
+  }
+
+  .datePicker {
+    margin-left: var(--space-2);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

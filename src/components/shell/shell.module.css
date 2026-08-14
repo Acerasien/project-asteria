@@ -1,0 +1,161 @@
+.shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+}
+
+.skipLink {
+  position: fixed;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: var(--z-toast);
+  padding: var(--space-2) var(--space-3);
+  color: white;
+  background: var(--color-accent);
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+}
+
+.skipLink:focus { transform: translateY(0); }
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4) var(--space-3);
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+}
+
+.brand {
+  min-height: 3.5rem;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-2);
+  margin-bottom: var(--space-6);
+  font-weight: 700;
+}
+
+.brandMark {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: none;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: var(--color-accent);
+  border-radius: var(--radius-sm);
+}
+
+.sideNavigation { display: grid; gap: var(--space-1); }
+
+.navLink,
+.logoutButton {
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-3);
+  color: var(--color-ink-secondary);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  font-weight: 550;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 150ms ease-out, background-color 150ms ease-out;
+}
+
+.navLink:hover,
+.logoutButton:hover { color: var(--color-ink); background: var(--color-surface-subtle); }
+.navLink[aria-current="page"] { color: var(--color-accent); background: color-mix(in oklch, var(--color-accent) 9%, white); }
+
+.logoutForm { margin-top: auto; }
+.logoutButton { width: 100%; }
+
+.workspace { min-width: 0; }
+
+.topbar {
+  min-height: 4.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: 0 var(--space-8);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.date,
+.mobileBrand { margin: 0; }
+.date { color: var(--color-ink-secondary); font-size: 0.875rem; }
+.mobileBrand { display: none; font-weight: 700; }
+
+.user { display: flex; align-items: center; gap: var(--space-3); }
+.avatar { width: 2.5rem; height: 2.5rem; display: grid; place-items: center; color: white; background: var(--color-accent); border-radius: 999px; font-size: 0.8125rem; font-weight: 700; }
+.userCopy { display: grid; font-size: 0.8125rem; line-height: 1.35; }
+.userCopy strong { font-weight: 650; }
+.userCopy span { color: var(--color-ink-secondary); }
+
+.main { padding: var(--space-8); }
+.bottomNavigation { display: none; }
+
+@media (max-width: 75rem) and (min-width: 48rem) {
+  .shell { grid-template-columns: 4.75rem minmax(0, 1fr); }
+  .sidebar { align-items: center; padding-inline: var(--space-2); }
+  .brand { padding: 0; }
+  .brandText,
+  .navLink span,
+  .logoutButton span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .sideNavigation,
+  .logoutForm { width: 100%; }
+  .navLink,
+  .logoutButton { justify-content: center; padding: 0; }
+}
+
+@media (max-width: 47.99rem) {
+  .shell { display: block; padding-bottom: calc(4.25rem + env(safe-area-inset-bottom)); }
+  .sidebar { display: contents; }
+  .brand,
+  .sideNavigation,
+  .logoutForm { display: none; }
+  .topbar { min-height: 4.25rem; padding: 0 var(--space-4); }
+  .mobileBrand { display: block; }
+  .date { font-size: 0.75rem; }
+  .userCopy { display: none; }
+  .avatar { width: 2.25rem; height: 2.25rem; }
+  .main { padding: var(--space-4); }
+  .bottomNavigation {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: var(--z-sticky);
+    min-height: calc(4.25rem + env(safe-area-inset-bottom));
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding: var(--space-2) var(--space-2) max(var(--space-2), env(safe-area-inset-bottom));
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+  }
+  .bottomLink {
+    min-width: 0;
+    flex: 1;
+    min-height: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.125rem;
+    color: var(--color-ink-secondary);
+    border-radius: var(--radius-sm);
+    font-size: 0.5625rem;
+    font-weight: 550;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .bottomLink[aria-current="page"] { color: var(--color-accent); }
+}

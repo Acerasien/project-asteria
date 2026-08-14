@@ -1,0 +1,592 @@
+{
+  "drizzle.config.ts": {
+    "mtime": 1786514292.447686,
+    "ast_hash": "324f52325ed86daaf9762b625c9144b6",
+    "semantic_hash": ""
+  },
+  "drizzle/meta/0000_snapshot.json": {
+    "mtime": 1786590361.7216663,
+    "ast_hash": "0fec33ef7beb3da6826df178c90d4e67",
+    "semantic_hash": ""
+  },
+  "drizzle/meta/_journal.json": {
+    "mtime": 1786590361.7221715,
+    "ast_hash": "1dfd1e75718828205bac9d1cb8ba66f3",
+    "semantic_hash": ""
+  },
+  "eslint.config.mjs": {
+    "mtime": 1786345859.6392145,
+    "ast_hash": "a4ef80a56e3de0df3ca8d644c204eb0f",
+    "semantic_hash": "a4ef80a56e3de0df3ca8d644c204eb0f"
+  },
+  "next-env.d.ts": {
+    "mtime": 1786590685.4252474,
+    "ast_hash": "aa94238a90e7d04b7a47ecc3145ba6a0",
+    "semantic_hash": "aa94238a90e7d04b7a47ecc3145ba6a0"
+  },
+  "next.config.ts": {
+    "mtime": 1786345096.4318275,
+    "ast_hash": "9cd3d5364d8463f89b9025db21b2a795",
+    "semantic_hash": "9cd3d5364d8463f89b9025db21b2a795"
+  },
+  "package.json": {
+    "mtime": 1786506048.4443755,
+    "ast_hash": "6010855088d73535e1c5b6ea056f5b55",
+    "semantic_hash": ""
+  },
+  "skills-lock.json": {
+    "mtime": 1786411208.734218,
+    "ast_hash": "3a5e2676ae230b4906d0b86c48b3b92f",
+    "semantic_hash": "3a5e2676ae230b4906d0b86c48b3b92f"
+  },
+  "src/app/api/auth/[...nextauth]/route.ts": {
+    "mtime": 1786345586.3100233,
+    "ast_hash": "64f6d6799ab87d3850d5c17b77ad8345",
+    "semantic_hash": "64f6d6799ab87d3850d5c17b77ad8345"
+  },
+  "src/app/dashboard/calendar/calendar-controls.tsx": {
+    "mtime": 1786505828.0621636,
+    "ast_hash": "d1cdb3bcea03ce99361a81861a677a5b",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/calendar/loading.tsx": {
+    "mtime": 1786417743.740611,
+    "ast_hash": "9cd7fdb11b8b1e2978d35798e23e113e",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/calendar/page.tsx": {
+    "mtime": 1786505936.9341354,
+    "ast_hash": "0200c11f096780a5d2b4e28f3d1d8ea8",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/guests/[id]/page.tsx": {
+    "mtime": 1786417608.0273721,
+    "ast_hash": "14cd415a47c0e8b0ddc3f46e0be55001",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/guests/actions.ts": {
+    "mtime": 1786417619.5134096,
+    "ast_hash": "ab1097b358b566b9ce943504123e0d3b",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/guests/guest-form.tsx": {
+    "mtime": 1786505702.2763422,
+    "ast_hash": "4068517ef85d52ae218253210b4479f5",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/guests/loading.tsx": {
+    "mtime": 1786417748.8204353,
+    "ast_hash": "981dfc01aa97288a7bc65e97549f3e35",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/guests/new/page.tsx": {
+    "mtime": 1786417626.8730867,
+    "ast_hash": "db9cbfd8a7a2bb1cf43370cc28f541ed",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/guests/page.tsx": {
+    "mtime": 1786417594.9328613,
+    "ast_hash": "18571af5c4e9310bec7e979208eefa3e",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/housekeeping/actions.ts": {
+    "mtime": 1786505483.348658,
+    "ast_hash": "4570844a384a00fb8b4e60882ee52e62",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/housekeeping/loading.tsx": {
+    "mtime": 1786417756.0713503,
+    "ast_hash": "bd7d3e3c64e29eb0543ac9af4bad81ed",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/housekeeping/page.tsx": {
+    "mtime": 1786505587.0870464,
+    "ast_hash": "c458fdcfe13393af48519c02ed50ca14",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/housekeeping/room-status-control.tsx": {
+    "mtime": 1786417639.0746677,
+    "ast_hash": "d472e1839d3bcf764a9f9c6acffea493",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/layout.tsx": {
+    "mtime": 1786410194.300962,
+    "ast_hash": "0a2ee8946ef99ac4316bdf5019b65eb2",
+    "semantic_hash": "0a2ee8946ef99ac4316bdf5019b65eb2"
+  },
+  "src/app/dashboard/loading.tsx": {
+    "mtime": 1786417737.7248776,
+    "ast_hash": "20d92296fec4305b47f4f291ae023075",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/logout-action.ts": {
+    "mtime": 1786345670.160666,
+    "ast_hash": "107628d9f5e795a5c9eb6086f11e9aa9",
+    "semantic_hash": "107628d9f5e795a5c9eb6086f11e9aa9"
+  },
+  "src/app/dashboard/page.tsx": {
+    "mtime": 1786417513.153207,
+    "ast_hash": "e9c7f1f120540166480cc649f2e5593b",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/reservations/[id]/page.tsx": {
+    "mtime": 1786596615.257346,
+    "ast_hash": "82c6a69ab8ac3fb76fffa64aa2ba9618",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/reservations/actions.ts": {
+    "mtime": 1786601532.42099,
+    "ast_hash": "2cfaaec01150b98530fe502e9658d097",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/reservations/lifecycle-actions.tsx": {
+    "mtime": 1786417567.1216972,
+    "ast_hash": "932583bed6dd47cfb74d2aab764d0b52",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/reservations/new/page.tsx": {
+    "mtime": 1786596629.4587526,
+    "ast_hash": "66902595d850e58b5d258b595aae9b4e",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/reservations/page.tsx": {
+    "mtime": 1786417542.0275707,
+    "ast_hash": "f807d26fdc38f2d76d713477e5da7aca",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/reservations/reservation-form.tsx": {
+    "mtime": 1786596817.1886501,
+    "ast_hash": "f6c925ec5a7e0a4c5764559ab3a2d858",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/actions.ts": {
+    "mtime": 1786604964.6313615,
+    "ast_hash": "e61381a95dbfa1d57f66b0888e8b35fc",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/delete-control.tsx": {
+    "mtime": 1786419036.3621964,
+    "ast_hash": "ab339f8f85ba936902ad4a2c7b433264",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/loading.tsx": {
+    "mtime": 1786417761.6231968,
+    "ast_hash": "e54f53aff6de031f160a5c7198c2e6e0",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/page.tsx": {
+    "mtime": 1786603553.8899643,
+    "ast_hash": "4ecebd3d755314e0b572fa360fd92ef1",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/room-types/[id]/page.tsx": {
+    "mtime": 1786590605.582614,
+    "ast_hash": "c34ad654ae824ebd15d298e9b83210f5",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/room-types/new/page.tsx": {
+    "mtime": 1786590595.6203306,
+    "ast_hash": "77ac6d33f4ecf5bf2e44d0facad67aa0",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/rooms-list.tsx": {
+    "mtime": 1786505655.3771389,
+    "ast_hash": "e3124d6da93ab0c61d3c676072dbd1b2",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/rooms/[id]/page.tsx": {
+    "mtime": 1786505677.61824,
+    "ast_hash": "0df78657e4924db07a86646c30a8517e",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/rooms/new/page.tsx": {
+    "mtime": 1786417703.1032796,
+    "ast_hash": "4db93bffd4a804932dc95132365dc537",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/settings-forms.tsx": {
+    "mtime": 1786604945.4349635,
+    "ast_hash": "50b5e004d9422693631abf94bc6c9af3",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/staff/[id]/page.tsx": {
+    "mtime": 1786419329.7106683,
+    "ast_hash": "a13edd2b46b5e41259b434c53672235b",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/staff/new/page.tsx": {
+    "mtime": 1786417721.318043,
+    "ast_hash": "d8f7dc680a3abef5d79cc23a862339b5",
+    "semantic_hash": ""
+  },
+  "src/app/layout.tsx": {
+    "mtime": 1786497861.0456383,
+    "ast_hash": "c89c747e26df8ecb5468a4be89167190",
+    "semantic_hash": ""
+  },
+  "src/app/login/actions.ts": {
+    "mtime": 1786417505.950486,
+    "ast_hash": "5d6950b19ebd988b18fe485a6dc74261",
+    "semantic_hash": ""
+  },
+  "src/app/login/login-form.tsx": {
+    "mtime": 1786417501.9652495,
+    "ast_hash": "84ddac1d8cc99ba0d5d91e49c19781e7",
+    "semantic_hash": ""
+  },
+  "src/app/login/page.tsx": {
+    "mtime": 1786417497.6124036,
+    "ast_hash": "3dcf4eb9210a4001fe0f0710230b5185",
+    "semantic_hash": ""
+  },
+  "src/app/page.tsx": {
+    "mtime": 1786345101.225099,
+    "ast_hash": "b98eef43c3ac4600ed07fd3681405cad",
+    "semantic_hash": "b98eef43c3ac4600ed07fd3681405cad"
+  },
+  "src/auth.ts": {
+    "mtime": 1786345585.2780988,
+    "ast_hash": "acb0ceb2b431e325c907422061c156c4",
+    "semantic_hash": "acb0ceb2b431e325c907422061c156c4"
+  },
+  "src/components/shell/app-shell.tsx": {
+    "mtime": 1786417492.9300404,
+    "ast_hash": "f53c1b51287513b4dcc5e586de590277",
+    "semantic_hash": ""
+  },
+  "src/components/shell/navigation.tsx": {
+    "mtime": 1786602987.4150498,
+    "ast_hash": "cd73cd3e3eb29bcad8671e7f174ba9e6",
+    "semantic_hash": ""
+  },
+  "src/components/ui/status-badge.tsx": {
+    "mtime": 1786417483.3524716,
+    "ast_hash": "b608058649c2e1d85cdfa8c2093d1b1e",
+    "semantic_hash": ""
+  },
+  "src/db/client.ts": {
+    "mtime": 1786345298.7620995,
+    "ast_hash": "d8322d293078405fed630437982e92cb",
+    "semantic_hash": "d8322d293078405fed630437982e92cb"
+  },
+  "src/db/migrate.ts": {
+    "mtime": 1786413781.038251,
+    "ast_hash": "ed6893dfe452bb56ceff431d3f19e0b8",
+    "semantic_hash": "ed6893dfe452bb56ceff431d3f19e0b8"
+  },
+  "src/db/schema.ts": {
+    "mtime": 1786595548.7315567,
+    "ast_hash": "a5e6bb0d634a028bc0c0f507174d57a8",
+    "semantic_hash": ""
+  },
+  "src/db/seed.ts": {
+    "mtime": 1786591900.956412,
+    "ast_hash": "a508db6b1a451e479c11ddc303238f4b",
+    "semantic_hash": ""
+  },
+  "src/lib/dal.ts": {
+    "mtime": 1786410192.8286958,
+    "ast_hash": "4d3546d581223971a8a4b68d5a9cb802",
+    "semantic_hash": "4d3546d581223971a8a4b68d5a9cb802"
+  },
+  "src/lib/hotel-date.ts": {
+    "mtime": 1786417478.7829733,
+    "ast_hash": "8dbe9d946dc512f212c9d2a0fddd0965",
+    "semantic_hash": ""
+  },
+  "src/lib/permissions.test.ts": {
+    "mtime": 1786345880.499034,
+    "ast_hash": "a5cf8b39d44846b27a20ca5fbd4b7022",
+    "semantic_hash": "a5cf8b39d44846b27a20ca5fbd4b7022"
+  },
+  "src/lib/permissions.ts": {
+    "mtime": 1786345584.6678941,
+    "ast_hash": "7796978778a5d1860fbe6d8d885b328c",
+    "semantic_hash": "7796978778a5d1860fbe6d8d885b328c"
+  },
+  "src/modules/calendar/date-window.test.ts": {
+    "mtime": 1786505947.5827491,
+    "ast_hash": "7bc0f0dfb216f0ccc1b4e4b9b06dd539",
+    "semantic_hash": ""
+  },
+  "src/modules/calendar/date-window.ts": {
+    "mtime": 1786505573.66022,
+    "ast_hash": "c4a3fae2f3dfc72fe28d4f5745f3d7d7",
+    "semantic_hash": ""
+  },
+  "src/modules/calendar/queries.ts": {
+    "mtime": 1786590662.466068,
+    "ast_hash": "09940be954430e53b8f360d9f5b8763d",
+    "semantic_hash": ""
+  },
+  "src/modules/dashboard/queries.ts": {
+    "mtime": 1786591005.4448817,
+    "ast_hash": "f9bfa6d70e6026397c07ec843de559ef",
+    "semantic_hash": ""
+  },
+  "src/modules/guests/queries.ts": {
+    "mtime": 1786596482.2481823,
+    "ast_hash": "6af4b51f0aaa5acb96277100c57b429f",
+    "semantic_hash": ""
+  },
+  "src/modules/guests/validation.test.ts": {
+    "mtime": 1786519951.4419756,
+    "ast_hash": "092fd68066d8b763963957d13688bf74",
+    "semantic_hash": ""
+  },
+  "src/modules/guests/validation.ts": {
+    "mtime": 1786505935.7069702,
+    "ast_hash": "295413062d0415cac9ac73d27d4fe51e",
+    "semantic_hash": ""
+  },
+  "src/modules/housekeeping/queries.ts": {
+    "mtime": 1786591031.5324037,
+    "ast_hash": "8ae8677022bd4fe73bb47ae38be0ef0c",
+    "semantic_hash": ""
+  },
+  "src/modules/housekeeping/status-rules.test.ts": {
+    "mtime": 1786414136.4106734,
+    "ast_hash": "3e634c4ba9038cc6a21a61c2ea538604",
+    "semantic_hash": "3e634c4ba9038cc6a21a61c2ea538604"
+  },
+  "src/modules/housekeeping/status-rules.ts": {
+    "mtime": 1786414135.8094058,
+    "ast_hash": "6722fbbbbbc1764f8376deca53e654b9",
+    "semantic_hash": "6722fbbbbbc1764f8376deca53e654b9"
+  },
+  "src/modules/reservations/queries.ts": {
+    "mtime": 1786596583.589985,
+    "ast_hash": "890638bb479ddf66d38384266b1350c0",
+    "semantic_hash": ""
+  },
+  "src/modules/reservations/status-transition.test.ts": {
+    "mtime": 1786345879.823937,
+    "ast_hash": "fa29d652a094e7abb39da82b9be6e2fe",
+    "semantic_hash": "fa29d652a094e7abb39da82b9be6e2fe"
+  },
+  "src/modules/reservations/status-transition.ts": {
+    "mtime": 1786345879.1654959,
+    "ast_hash": "595c0983ed0a73d053357740044f8962",
+    "semantic_hash": "595c0983ed0a73d053357740044f8962"
+  },
+  "src/modules/reservations/validation.test.ts": {
+    "mtime": 1786411181.5073712,
+    "ast_hash": "ba584adf408d135a6ed242366d8870fa",
+    "semantic_hash": "ba584adf408d135a6ed242366d8870fa"
+  },
+  "src/modules/reservations/validation.ts": {
+    "mtime": 1786505444.9799964,
+    "ast_hash": "00b8234051bdda5d3e6195bbb64f8db6",
+    "semantic_hash": ""
+  },
+  "src/modules/settings/queries.ts": {
+    "mtime": 1786595670.632804,
+    "ast_hash": "e44331e5f7b222f048fcd1b093bc2a79",
+    "semantic_hash": ""
+  },
+  "src/modules/settings/safety-rules.test.ts": {
+    "mtime": 1786414615.385644,
+    "ast_hash": "42f2e0a0a174b550827df289e1078a66",
+    "semantic_hash": "42f2e0a0a174b550827df289e1078a66"
+  },
+  "src/modules/settings/safety-rules.ts": {
+    "mtime": 1786417660.6036074,
+    "ast_hash": "2d65e6cb8812fd43b996a24adde2e276",
+    "semantic_hash": ""
+  },
+  "src/modules/settings/validation.test.ts": {
+    "mtime": 1786604919.0790725,
+    "ast_hash": "aabb587db0c63dcc36fec2cb5d27e11e",
+    "semantic_hash": ""
+  },
+  "src/modules/settings/validation.ts": {
+    "mtime": 1786604905.04467,
+    "ast_hash": "57eca88f5a126b6f8d40959ec9435e97",
+    "semantic_hash": ""
+  },
+  "src/types/next-auth.d.ts": {
+    "mtime": 1786345583.6180508,
+    "ast_hash": "4a6f3a0342932ef6719ec249aba9ce76",
+    "semantic_hash": "4a6f3a0342932ef6719ec249aba9ce76"
+  },
+  "tsconfig.json": {
+    "mtime": 1786345902.05837,
+    "ast_hash": "3068ce51daf73992e28f67b887cf3b33",
+    "semantic_hash": "3068ce51daf73992e28f67b887cf3b33"
+  },
+  "vitest.config.ts": {
+    "mtime": 1786410553.3485796,
+    "ast_hash": "6696438846205693037688ce78127a5f",
+    "semantic_hash": "6696438846205693037688ce78127a5f"
+  },
+  "vitest.setup.ts": {
+    "mtime": 1786345098.2989712,
+    "ast_hash": "3709e3aa95abf0544678f0f2d9b46702",
+    "semantic_hash": "3709e3aa95abf0544678f0f2d9b46702"
+  },
+  "AGENTS.md": {
+    "mtime": 1786345971.4412072,
+    "ast_hash": "01e8142356e15c3404e0d84c48187cd0",
+    "semantic_hash": "01e8142356e15c3404e0d84c48187cd0"
+  },
+  "CLAUDE.md": {
+    "mtime": 1786345971.4412072,
+    "ast_hash": "5c27369b226fcf2be8a6cfe52224e767",
+    "semantic_hash": "5c27369b226fcf2be8a6cfe52224e767"
+  },
+  "DESIGN.md": {
+    "mtime": 1786344919.9340365,
+    "ast_hash": "0a6b6dd99f57f9c1007192679ab1efa5",
+    "semantic_hash": "0a6b6dd99f57f9c1007192679ab1efa5"
+  },
+  "PRODUCT.md": {
+    "mtime": 1786344242.8419526,
+    "ast_hash": "aa44b60db6e0a03bf84f83380ab56b56",
+    "semantic_hash": "aa44b60db6e0a03bf84f83380ab56b56"
+  },
+  "docs/admin-only-seed-design.md": {
+    "mtime": 1786416252.7440138,
+    "ast_hash": "05800585b18a770d1626d9ad867a9f2a",
+    "semantic_hash": "05800585b18a770d1626d9ad867a9f2a"
+  },
+  "docs/hotel-reservation-design.md": {
+    "mtime": 1786345295.8371296,
+    "ast_hash": "6493acfb6a9ec6464233b23a5d5d5673",
+    "semantic_hash": "6493acfb6a9ec6464233b23a5d5d5673"
+  },
+  "docs/implementation-plan.md": {
+    "mtime": 1786416253.3658712,
+    "ast_hash": "43a6b5eb195940260195cc68811a6d2d",
+    "semantic_hash": "43a6b5eb195940260195cc68811a6d2d"
+  },
+  "docs/slice-3-calendar-design.md": {
+    "mtime": 1786412510.8712065,
+    "ast_hash": "b07e0f3fb3875ffd439b5d60fd85eac5",
+    "semantic_hash": "b07e0f3fb3875ffd439b5d60fd85eac5"
+  },
+  "docs/slice-4-guest-management-design.md": {
+    "mtime": 1786413467.2963178,
+    "ast_hash": "98e13acfc48e267ec393c8a15fea711f",
+    "semantic_hash": "98e13acfc48e267ec393c8a15fea711f"
+  },
+  "docs/slice-5-housekeeping-design.md": {
+    "mtime": 1786414134.172406,
+    "ast_hash": "c47304fb1db1e3ba1a084571c09759f6",
+    "semantic_hash": "c47304fb1db1e3ba1a084571c09759f6"
+  },
+  "docs/slice-6-administration-design.md": {
+    "mtime": 1786414569.003644,
+    "ast_hash": "f501f329c3639f7a40c418dc4d605f86",
+    "semantic_hash": "f501f329c3639f7a40c418dc4d605f86"
+  },
+  "docs/dashboard-direction-a.png": {
+    "mtime": 1786344632.3911476,
+    "ast_hash": "fe012cc0fe42c03d09f1e0d82b0eb570",
+    "semantic_hash": "fe012cc0fe42c03d09f1e0d82b0eb570"
+  },
+  "docs/dashboard-direction-b.png": {
+    "mtime": 1786344789.6130903,
+    "ast_hash": "dcc966c55a80c4bbe30ec3fccd1dd707",
+    "semantic_hash": "dcc966c55a80c4bbe30ec3fccd1dd707"
+  },
+  "docs/hotel-operations-palette.png": {
+    "mtime": 1786344463.1168067,
+    "ast_hash": "f6281f12ecbecbd28f3471572862a23f",
+    "semantic_hash": "f6281f12ecbecbd28f3471572862a23f"
+  },
+  "docs/wireframe-calendar-grid.png": {
+    "mtime": 1786343467.3997371,
+    "ast_hash": "2d2be1229fbf6bd714bb356e67801b5b",
+    "semantic_hash": "2d2be1229fbf6bd714bb356e67801b5b"
+  },
+  "docs/wireframe-dashboard-overview.png": {
+    "mtime": 1786343477.6638255,
+    "ast_hash": "c38c955881f8aea1654a3bf9c829b6fb",
+    "semantic_hash": "c38c955881f8aea1654a3bf9c829b6fb"
+  },
+  ".impeccable/critique/2026-08-11T03-12-45Z__src-app-dashboard.md": {
+    "mtime": 1786417965.637377,
+    "ast_hash": "fd81e68620bb39a9e03388214813249f",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/settings-nav.tsx": {
+    "mtime": 1786419595.4843276,
+    "ast_hash": "e905538504486b76020b8b04d06b2f46",
+    "semantic_hash": ""
+  },
+  "drizzle/0000_absurd_sugar_man.sql": {
+    "mtime": 1786590361.7221715,
+    "ast_hash": "280f00124b36eb0fc71f4528e2a44fdd",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/reservations/guest-combobox.tsx": {
+    "mtime": 1786596737.9925704,
+    "ast_hash": "115ee1febb70c575ea590d276a906389",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/rooms/page.tsx": {
+    "mtime": 1786603362.9620235,
+    "ast_hash": "45b80bc8a60ea55288fa404e0feb867d",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/rooms/rooms-controls.tsx": {
+    "mtime": 1786602999.065945,
+    "ast_hash": "aad81b9a963667dcb1ff6d1e79f783b1",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/locations-list.tsx": {
+    "mtime": 1786590516.9822576,
+    "ast_hash": "5eed629e577bb844ef0c096d80230383",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/locations/[id]/page.tsx": {
+    "mtime": 1786590637.2204876,
+    "ast_hash": "8f414d934c51789290a2f9f22cc82faf",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/locations/new/page.tsx": {
+    "mtime": 1786590620.7509525,
+    "ast_hash": "4a28a01025f6216e1576ebbf27bde56c",
+    "semantic_hash": ""
+  },
+  "src/db/drop.ts": {
+    "mtime": 1786506113.5844576,
+    "ast_hash": "9c653512fafaaf10b7d6a32dfdc912d4",
+    "semantic_hash": ""
+  },
+  "src/modules/rooms/queries.ts": {
+    "mtime": 1786602862.3318665,
+    "ast_hash": "5e5b2212fdf3633424731337f52e1429",
+    "semantic_hash": ""
+  },
+  "src/modules/rooms/utils.test.ts": {
+    "mtime": 1786603208.6094537,
+    "ast_hash": "06c34e636a96a8663fd6950ea8920c11",
+    "semantic_hash": ""
+  },
+  "src/modules/rooms/utils.ts": {
+    "mtime": 1786603200.123231,
+    "ast_hash": "e8d2ca2692b43ad56ba06973d1d0ad7d",
+    "semantic_hash": ""
+  },
+  "PANDUAN_PENGGUNA.md": {
+    "mtime": 1786420373.557349,
+    "ast_hash": "9fe4e46954cad42874c76efbc7641a6a",
+    "semantic_hash": ""
+  },
+  "docs/slice-7-room-status-page-design.md": {
+    "mtime": 1786602818.0952952,
+    "ast_hash": "e9958baaeb35b166d3c9960d56232d31",
+    "semantic_hash": ""
+  },
+  "src/app/dashboard/settings/wipe-database-zone.tsx": {
+    "mtime": 1786603545.6923666,
+    "ast_hash": "97c984f1ed13fb65ed97ad7ce1dfc831",
+    "semantic_hash": ""
+  },
+  "docs/slice-8-bulk-bed-generation-design.md": {
+    "mtime": 1786604806.9352384,
+    "ast_hash": "056f64466cba78120a1fcab7b9a1fcb4",
+    "semantic_hash": ""
+  }
+}

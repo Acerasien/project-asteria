@@ -1,0 +1,149 @@
+.page { max-width: 96rem; margin: 0 auto; }
+.narrowPage { max-width: 64rem; margin: 0 auto; }
+.pageHeader, .profileHeader { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-6); margin-bottom: var(--space-6); }
+.pageHeader h1, .profileHeader h1 { margin: 0; font-size: 1.75rem; line-height: 1.2; letter-spacing: -.025em; text-wrap: balance; }
+.pageHeader p, .profileHeader p { max-width: 65ch; margin: var(--space-2) 0 0; color: var(--color-ink-secondary); }
+.profileHeader { align-items: center; margin-bottom: var(--space-4); }
+.profileHeader > div > span { color: var(--color-ink-secondary); font-size: .75rem; font-weight: 650; }
+.primaryButton, .secondaryButton { min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: 0 var(--space-4); border-radius: var(--radius-sm); font-size: .875rem; font-weight: 650; text-decoration: none; cursor: pointer; transition: background-color 150ms ease-out, border-color 150ms ease-out; }
+.primaryButton { color: white; background: var(--color-accent); border: 1px solid var(--color-accent); }
+.primaryButton:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
+.primaryButton:disabled { opacity: .58; cursor: wait; }
+.secondaryButton { color: var(--color-ink); background: var(--color-surface); border: 1px solid var(--color-border); }
+.secondaryButton:hover { background: var(--color-surface-subtle); border-color: color-mix(in oklch, var(--color-accent) 35%, var(--color-border)); }
+.filters { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4); }
+.searchField { min-width: 18rem; min-height: 2.75rem; flex: 1; display: flex; align-items: center; gap: var(--space-2); padding: 0 var(--space-3); color: var(--color-ink); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
+.searchField svg { flex: none; color: var(--color-ink-secondary); }
+.searchField input { min-width: 0; height: 2.5rem; flex: 1; background: transparent; border: 0; outline: 0; }
+.clearLink, .backLink { color: var(--color-accent); font-size: .875rem; font-weight: 600; text-decoration: none; }
+.clearLink:hover, .backLink:hover { text-decoration: underline; text-underline-offset: .2em; }
+.backLink { min-height: 2.75rem; display: inline-flex; align-items: center; gap: var(--space-1); margin: -.5rem 0 var(--space-3); }
+.listPanel, .formPanel, .historyPanel, .identityPanel { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+.listSummary { min-height: 3.5rem; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: 0 var(--space-4); color: var(--color-ink-secondary); border-bottom: 1px solid var(--color-border); font-size: .8125rem; }
+.tableWrap { overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+.table th { padding: var(--space-3) var(--space-4); color: var(--color-ink-secondary); font-size: .75rem; font-weight: 600; text-align: left; border-bottom: 1px solid var(--color-border); white-space: nowrap; }
+.table td { height: 4rem; padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--color-border); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.table tbody tr:last-child td { border-bottom: 0; }
+.table tbody tr:hover { background: var(--color-surface-subtle); }
+.table td a {
+  min-height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--space-3);
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 150ms ease-out, background-color 150ms ease-out, color 150ms ease-out;
+}
+.table td a:hover {
+  color: var(--color-accent);
+  background: var(--color-surface-subtle);
+  border-color: color-mix(in oklch, var(--color-accent) 35%, var(--color-border));
+}
+.mobileRecords, .mobileHistory { display: none; }
+.pagination { min-height: 3.75rem; display: flex; align-items: center; justify-content: flex-end; gap: var(--space-3); padding: 0 var(--space-4); border-top: 1px solid var(--color-border); }
+.pagination a, .pagination span { min-height: 2.75rem; display: inline-flex; align-items: center; padding: 0 var(--space-3); color: var(--color-accent); font-size: .8125rem; font-weight: 650; text-decoration: none; }
+.pagination span { color: var(--color-ink-secondary); opacity: .55; }
+.empty { display: grid; justify-items: center; gap: var(--space-2); padding: 4rem var(--space-6); text-align: center; }
+.empty h2, .empty p { margin: 0; }
+.empty h2 { font-size: 1rem; }
+.empty p { color: var(--color-ink-secondary); font-size: .875rem; }
+.empty a, .emptyCompact a { min-height: 2.75rem; display: inline-flex; align-items: center; color: var(--color-accent); font-size: .875rem; font-weight: 650; text-decoration: none; }
+.formPanel, .identityPanel { padding: var(--space-6); }
+.formPanel > h2, .identityPanel > h2 { margin: 0 0 var(--space-4); font-size: 1rem; }
+.form { display: grid; gap: var(--space-6); }
+.formGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+.field { display: grid; align-content: start; gap: var(--space-2); color: var(--color-ink); font-size: .8125rem; font-weight: 600; }
+.field span { display: flex; justify-content: space-between; gap: var(--space-3); }
+.field em { color: var(--color-ink-secondary); font-size: .75rem; font-style: normal; font-weight: 450; }
+.field input, .field select, .field textarea { width: 100%; color: var(--color-ink); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
+.field input, .field select { min-height: 2.75rem; padding: 0 var(--space-3); }
+.field textarea { min-height: 7rem; padding: var(--space-3); resize: vertical; }
+.field :is(input, select, textarea)[aria-invalid="true"] { border-color: var(--color-maintenance); }
+.field small { color: var(--color-maintenance); font-size: .75rem; font-weight: 500; }
+.formActions { display: flex; align-items: center; justify-content: flex-end; gap: var(--space-3); padding-top: var(--space-4); border-top: 1px solid var(--color-border); }
+.formMessage, .successNotice { padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm); font-size: .875rem; }
+.formMessage[data-status="error"] { color: var(--color-maintenance); background: color-mix(in oklch, var(--color-maintenance) 8%, white); border: 1px solid color-mix(in oklch, var(--color-maintenance) 18%, var(--color-border)); }
+.formMessage a { color: inherit; font-weight: 700; }
+.successNotice { margin-bottom: var(--space-4); color: var(--color-checked-in); background: color-mix(in oklch, var(--color-checked-in) 8%, white); border: 1px solid color-mix(in oklch, var(--color-checked-in) 18%, var(--color-border)); }
+.profileGrid { display: grid; grid-template-columns: minmax(0, 1fr) 21rem; gap: var(--space-4); align-items: start; }
+.profileMain { display: grid; gap: var(--space-4); min-width: 0; }
+.identityPanel { position: sticky; top: calc(var(--space-6) + 4rem); }
+.identityPanel dl { display: grid; gap: var(--space-4); margin: 0; }
+.identityPanel dt { color: var(--color-ink-secondary); font-size: .75rem; }
+.identityPanel dd { margin: var(--space-1) 0 0; font-size: .875rem; font-weight: 600; overflow-wrap: anywhere; }
+.profileNotes { margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--color-border); }
+.profileNotes h3 { margin: 0; font-size: .8125rem; }
+.profileNotes p { margin: var(--space-2) 0 0; color: var(--color-ink-secondary); font-size: .875rem; white-space: pre-wrap; }
+.panelHeader { min-height: 3.75rem; display: flex; align-items: center; padding: 0 var(--space-4); border-bottom: 1px solid var(--color-border); }
+.panelHeader h2, .panelHeader p { margin: 0; }
+.panelHeader h2 { font-size: 1rem; }
+.panelHeader p { color: var(--color-ink-secondary); font-size: .75rem; }
+.emptyCompact { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-6); }
+.emptyCompact p { margin: 0; color: var(--color-ink-secondary); font-size: .875rem; }
+.loadingHeader { display: flex; justify-content: space-between; margin-bottom: var(--space-6); }
+.loadingHeader span { width: 15rem; height: 2.5rem; background: var(--color-border); border-radius: var(--radius-sm); animation: pulse 1.5s ease-in-out infinite; }
+.loadingHeader span:last-child { width: 8rem; }
+.loadingSearch { height: 2.75rem; margin-bottom: var(--space-4); background: var(--color-border); border-radius: var(--radius-sm); animation: pulse 1.5s ease-in-out infinite; }
+.loadingRows { display: grid; gap: 1px; padding: 1px; background: var(--color-border); border-radius: var(--radius-md); overflow: hidden; }
+.loadingRows span { height: 4rem; background: var(--color-surface); }
+.srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+@keyframes pulse { 50% { opacity: .55; } }
+
+@media (max-width: 68rem) {
+  .profileGrid { grid-template-columns: 1fr; }
+  .identityPanel { position: static; grid-row: 1; }
+  .identityPanel dl { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 47.99rem) {
+  .pageHeader, .profileHeader { align-items: flex-start; margin-bottom: var(--space-4); }
+  .pageHeader h1, .profileHeader h1 { font-size: 1.5rem; }
+  .pageHeader p, .profileHeader p { font-size: .875rem; }
+  .pageHeader .primaryButton, .profileHeader .primaryButton {
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    font-size: 0;
+    line-height: 0;
+    gap: 0;
+    flex: none;
+    justify-content: center;
+  }
+  .filters { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-2); }
+  .searchField { min-width: 0; grid-column: 1 / -1; }
+  .clearLink { min-height: 2.75rem; display: inline-flex; align-items: center; grid-column: 1 / -1; }
+  .tableWrap { display: none; }
+  .mobileRecords, .mobileHistory { display: grid; padding: 0 var(--space-3); }
+  .mobileRecord { min-height: 5.5rem; display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-3) 0; color: inherit; border-bottom: 1px solid var(--color-border); text-decoration: none; }
+  .mobileRecord:last-child { border-bottom: 0; }
+  .mobileRecord > span { min-width: 0; display: grid; }
+  .mobileRecord > span:last-child { flex: none; text-align: right; }
+  .mobileRecord strong { overflow: hidden; font-size: .8125rem; text-overflow: ellipsis; white-space: nowrap; }
+  .mobileRecord small { color: var(--color-ink-secondary); font-size: .6875rem; }
+  .mobileHistory > a { min-height: 6rem; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-content: center; gap: var(--space-1) var(--space-3); color: inherit; border-bottom: 1px solid var(--color-border); text-decoration: none; }
+  .mobileHistory > a:last-child { border-bottom: 0; }
+  .mobileHistory > a > span:first-child { display: grid; }
+  .mobileHistory > a > small { grid-column: 1 / -1; color: var(--color-ink-secondary); font-size: .6875rem; }
+  .mobileHistory strong { font-size: .8125rem; }
+  .mobileHistory span small { color: var(--color-ink-secondary); font-size: .6875rem; }
+  .listSummary, .pagination { padding-inline: var(--space-3); }
+  .formPanel, .identityPanel { padding: var(--space-4); }
+  .formGrid, .identityPanel dl { grid-template-columns: 1fr; }
+  .form { gap: var(--space-4); }
+  .formActions { position: sticky; bottom: calc(4rem + env(safe-area-inset-bottom)); z-index: 2; margin: 0 calc(var(--space-4) * -1) calc(var(--space-4) * -1); padding: var(--space-3) var(--space-4); background: color-mix(in oklch, var(--color-surface) 94%, transparent); backdrop-filter: blur(.5rem); }
+  .formActions > * { flex: 1; }
+  .emptyCompact { display: grid; justify-items: start; padding: var(--space-4); }
+  .loadingHeader span { width: 10rem; }
+  .loadingHeader span:last-child { width: 2.75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadingHeader span, .loadingSearch { animation: none; }
+}
