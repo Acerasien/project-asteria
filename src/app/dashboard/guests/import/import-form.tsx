@@ -9,6 +9,7 @@ import {
   CheckCircle,
   XCircle,
   Loader2,
+  Upload,
 } from "lucide-react";
 import { parseCSV, mapHeaders, normalizeGender } from "@/modules/guests/import-utils";
 import { guestInputSchema, type GuestInput } from "@/modules/guests/validation";
@@ -49,6 +50,30 @@ export function ImportForm() {
   const [parsedRows, setParsedRows] = useState<ParsedRow[] | null>(null);
   const [isPending, startTransition] = useTransition();
   const [isValidating, setIsValidating] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      setFile(e.dataTransfer.files[0]);
+      setErrorMsg("");
+      setCsvText(""); // Clear text if file drop
+    }
+  };
+
+  const triggerFileInput = () => {
+    document.getElementById("fileInput")?.click();
+  };
 
   const [summary, setSummary] = useState({
     total: 0,
@@ -77,6 +102,7 @@ export function ImportForm() {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
       setErrorMsg("");
+      setCsvText(""); // Clear text if file selected
     }
   };
 
@@ -313,47 +339,114 @@ export function ImportForm() {
 
       {/* STEP 1: UPLOAD FORM */}
       {!parsedRows && (
-        <form onSubmit={handlePreview} className={styles.card}>
-          <h2>Sumber Data</h2>
-          <p className={styles.cardSubHeader}>
-            Pilih file Excel yang disimpan sebagai format .csv, atau tempel baris CSV secara langsung.
-          </p>
+        <div className={styles.importSections}>
+          <form onSubmit={handlePreview} className={styles.card}>
+            <h2>Sumber Data</h2>
+            <p className={styles.cardSubHeader}>
+              Silakan pilih salah satu opsi di bawah ini untuk memasukkan data tamu.
+            </p>
 
-          <div className={styles.formGrid}>
-            <label className={styles.field}>
-              <span>Pilih file CSV</span>
-              <input
-                type="file"
-                accept=".csv"
-                onChange={handleFileChange}
+            <div className={styles.sumberDataContainer}>
+              <div className={styles.optionBox}>
+                <h3>Pilih File CSV</h3>
+                <div
+                  className={`${styles.dragDropZone} ${isDragging ? styles.dragOver : ""} ${file ? styles.hasFile : ""}`}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                  onClick={triggerFileInput}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") triggerFileInput();
+                  }}
+                  aria-label="Pilih file CSV"
+                >
+                  <input
+                    type="file"
+                    id="fileInput"
+                    accept=".csv"
+                    className={styles.hiddenFileInput}
+                    onChange={handleFileChange}
+                    disabled={isValidating}
+                  />
+                  <Upload size={28} className={styles.uploadIcon} />
+                  <span className={styles.dragDropText}>
+                    {file ? file.name : "Seret & lepas file CSV di sini, atau klik untuk memilih"}
+                  </span>
+                  {file ? (
+                    <button
+                      type="button"
+                      className={styles.clearFileButton}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setFile(null);
+                      }}
+                    >
+                      Hapus File
+                    </button>
+                  ) : (
+                    <em>Pastikan file berformat pemisah koma (.csv)</em>
+                  )}
+                </div>
+              </div>
+
+              <div className={styles.divider}>
+                <span>atau</span>
+              </div>
+
+              <div className={styles.optionBox}>
+                <h3>Tempel Teks CSV</h3>
+                <textarea
+                  value={csvText}
+                  onChange={(e) => {
+                    setCsvText(e.target.value);
+                    if (e.target.value && file) setFile(null); // Clear file if text entered
+                  }}
+                  placeholder="Nama Lengkap,Jenis Kelamin,Telepon,Email,Nomor Identitas,Catatan&#10;Budi Santoso,Laki-laki,+628123456789,budi@example.com,1234567890123456,Catatan..."
+                  className={styles.textarea}
+                  disabled={isValidating}
+                  aria-label="Tempel teks CSV"
+                />
+              </div>
+            </div>
+
+            <div className={styles.formActions}>
+              <Link href="/dashboard/guests" className={styles.secondaryButton}>
+                Batal
+              </Link>
+              <button
+                type="submit"
+                className={styles.primaryButton}
                 disabled={isValidating}
-              />
-              <em>Pastikan file berformat pemisah koma (.csv)</em>
-            </label>
+              >
+                {isValidating ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" /> Memvalidasi…
+                  </>
+                ) : (
+                  "Pratinjau & Validasi"
+                )}
+              </button>
+            </div>
+          </form>
 
-            <label className={styles.field}>
-              <span>Atau tempel teks CSV</span>
-              <textarea
-                value={csvText}
-                onChange={(e) => {
-                  setCsvText(e.target.value);
-                  if (e.target.value && file) setFile(null); // Clear file if text entered
-                }}
-                placeholder="Nama Lengkap,Jenis Kelamin,Telepon,Email,Nomor Identitas,Catatan&#10;Budi Santoso,Laki-laki,+628123456789,budi@example.com,1234567890123456,Catatan..."
-                disabled={isValidating}
-              />
-            </label>
-          </div>
-
-          <div className={styles.templateSection}>
+          {/* TEMPLATE SECTION AS A SEPARATE COMPACT CARD */}
+          <div className={styles.card}>
             <div className={styles.templateHeader}>
-              <span className={styles.templateTitle}>Format Kolom Templat (Excel-Compatible)</span>
+              <div>
+                <h2>Format Kolom Templat</h2>
+                <p className={styles.cardSubHeader}>
+                  Kolom berikut wajib ada dan berurutan agar data dapat terimpor dengan benar.
+                </p>
+              </div>
               <button
                 type="button"
                 onClick={handleDownloadTemplate}
-                className={styles.downloadLink}
+                className={styles.secondaryButton}
+                style={{ alignSelf: "flex-start" }}
               >
-                <Download size={14} style={{ marginRight: 4, verticalAlign: "middle" }} />
+                <Download size={15} style={{ marginRight: 6, verticalAlign: "middle" }} />
                 Unduh templat CSV
               </button>
             </div>
@@ -361,24 +454,7 @@ export function ImportForm() {
               Nama Lengkap,Jenis Kelamin,Telepon,Email,Nomor Identitas,Catatan
             </code>
           </div>
-
-          <div className={styles.buttonRow}>
-            <span />
-            <button
-              type="submit"
-              className={styles.primaryButton}
-              disabled={isValidating}
-            >
-              {isValidating ? (
-                <>
-                  <Loader2 size={16} className="animate-spin" /> Memvalidasi…
-                </>
-              ) : (
-                "Pratinjau & Validasi"
-              )}
-            </button>
-          </div>
-        </form>
+        </div>
       )}
 
       {/* STEP 2: PREVIEW PANEL */}
