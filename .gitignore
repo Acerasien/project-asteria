@@ -20,3 +20,13 @@
 .DS_Store
 Thumbs.db
 *.tsbuildinfo
+
+# agent and assistant files
+.agents/
+.claude/
+.impeccable/
+.playwright-mcp/
+graphify-out/
+skills-lock.json
+AGENTS.md
+CLAUDE.md
