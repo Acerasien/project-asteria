@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { hotelDate } from "@/lib/hotel-date";
 
 const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Pilih tanggal yang valid.");
 
@@ -16,13 +15,7 @@ export const reservationInputSchema = z
     path: ["checkOutDate"],
   });
 
-export const createReservationSchema = reservationInputSchema.refine(
-  (value) => value.checkInDate >= hotelDate(-1),
-  {
-    message: "Tanggal check-in tidak boleh sebelum kemarin.",
-    path: ["checkInDate"],
-  }
-);
+export const createReservationSchema = reservationInputSchema;
 
 export type ReservationInput = z.infer<typeof reservationInputSchema>;
 
