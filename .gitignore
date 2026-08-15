@@ -30,3 +30,12 @@ graphify-out/
 skills-lock.json
 AGENTS.md
 CLAUDE.md
+
+# project documentation and images
+/docs/
+/DESIGN.md
+/PANDUAN_PENGGUNA.md
+/PRODUCT.md
+/rooms-mobile-after.png
+/rooms-mobile-before.png
+
