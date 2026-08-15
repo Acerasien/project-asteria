@@ -39,7 +39,7 @@ function longDayLabel(date: string) {
 }
 
 function guestLabel(name: string) {
-  return name.trim().split(/\s+/).at(-1) ?? name;
+  return name.trim();
 }
 
 function nightCount(checkIn: string, checkOut: string) {
@@ -91,7 +91,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
                       <div className={styles.roomLabel}><strong>{room.number}</strong><StatusBadge status={room.status} /></div>
                       {data.dates.map((date) => {
                         const occupied = roomReservations.some((reservation) => reservation.checkInDate <= date && reservation.checkOutDate > date);
-                        return <div className={styles.dayCell} data-today={date === today || undefined} key={date}>
+                        return <div className={styles.dayCell} data-today={date === today || undefined} style={{ gridColumn: dateIndex(date, data.start) + 2 }} key={date}>
                           {!occupied && !blocked ? <Link href={`/dashboard/reservations/new?roomId=${room.id}&checkInDate=${date}&checkOutDate=${addCalendarDays(date, 1)}`} aria-label={`Buat reservasi untuk kasur ${room.number} di ${kamarName}, ${longDayLabel(date)}`}><span aria-hidden="true">+</span></Link> : blocked ? <span className={styles.unavailable} aria-label={`Kasur ${room.number} berstatus ${statusLabels[room.status]}`} /> : null}
                         </div>;
                       })}

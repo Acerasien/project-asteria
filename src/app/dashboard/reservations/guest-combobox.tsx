@@ -14,7 +14,7 @@ type GuestOption = {
 
 type GuestComboboxProps = {
   guests: GuestOption[];
-  selectedGuestId: string;
+  selectedGuest: GuestOption | null;
   onSelect: (guest: GuestOption | null) => void;
   searchAction: (query: string) => Promise<GuestOption[]>;
   error?: string;
@@ -22,7 +22,7 @@ type GuestComboboxProps = {
 
 export function GuestCombobox({
   guests: initialGuests,
-  selectedGuestId,
+  selectedGuest,
   onSelect,
   searchAction,
   error,
@@ -36,8 +36,6 @@ export function GuestCombobox({
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
-
-  const selectedGuest = initialGuests.find((g) => g.id === selectedGuestId) || null;
 
   // Set initial input query when a guest is selected or changed externally
   useEffect(() => {
@@ -131,7 +129,7 @@ export function GuestCombobox({
 
   return (
     <div className={styles.comboboxContainer} ref={containerRef}>
-      <input type="hidden" name="guestId" value={selectedGuestId} />
+      <input type="hidden" name="guestId" value={selectedGuest?.id ?? ""} />
       <div
         className={styles.comboboxInputWrapper}
         data-invalid={Boolean(error)}
@@ -149,7 +147,7 @@ export function GuestCombobox({
           autoComplete="off"
         />
         {isPending && <Loader2 size={16} className={styles.loadingSpinner} />}
-        {!isPending && selectedGuestId && (
+        {!isPending && selectedGuest && (
           <button type="button" onClick={handleClear} className={styles.clearBtn} aria-label="Hapus pilihan">
             <X size={16} />
           </button>
@@ -164,10 +162,10 @@ export function GuestCombobox({
                 <li
                   key={guest.id}
                   role="option"
-                  aria-selected={guest.id === selectedGuestId}
+                  aria-selected={guest.id === selectedGuest?.id}
                   className={styles.comboboxListItem}
                   data-highlighted={idx === highlightedIndex}
-                  data-selected={guest.id === selectedGuestId}
+                  data-selected={guest.id === selectedGuest?.id}
                   onClick={() => handleSelect(guest)}
                 >
                   <User size={14} className={styles.listItemIcon} />

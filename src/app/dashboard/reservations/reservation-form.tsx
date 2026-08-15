@@ -52,15 +52,13 @@ export function ReservationForm({
   const [state, formAction] = useActionState(action, { status: "idle" } satisfies ReservationActionState);
   const error = (field: string) => state.fieldErrors?.[field]?.[0];
 
-  const [selectedGuestId, setSelectedGuestId] = useState<string>(defaults.guestId ?? "");
+  const [selectedGuest, setSelectedGuest] = useState<OptionData["guests"][number] | null>(() => {
+    return options.guests.find((g) => g.id === defaults.guestId) ?? null;
+  });
+  const selectedGuestId = selectedGuest?.id ?? "";
   const [checkInDate, setCheckInDate] = useState<string>(defaults.checkInDate ?? "");
   const [checkOutDate, setCheckOutDate] = useState<string>(defaults.checkOutDate ?? "");
   const [selectedRoomId, setSelectedRoomId] = useState<string>(defaults.roomId ?? "");
-
-  const selectedGuest = useMemo(
-    () => options.guests.find((g) => g.id === selectedGuestId),
-    [options.guests, selectedGuestId],
-  );
 
   const availableRooms = useMemo(() => {
     const isRoomActive = (room: OptionData["rooms"][number]) => room.isActive || room.id === defaults.roomId;
@@ -132,8 +130,8 @@ export function ReservationForm({
           <span>Tamu {selectedGuest ? <em>({selectedGuest.gender === "MALE" ? "Laki-laki" : "Perempuan"})</em> : null}</span>
           <GuestCombobox
             guests={options.guests}
-            selectedGuestId={selectedGuestId}
-            onSelect={(guest) => setSelectedGuestId(guest ? guest.id : "")}
+            selectedGuest={selectedGuest}
+            onSelect={setSelectedGuest}
             searchAction={searchGuestsAction}
             error={error("guestId")}
           />

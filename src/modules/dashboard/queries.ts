@@ -68,7 +68,7 @@ export async function getDashboardData() {
             eq(beds.isActive, true),
           ),
         )
-        .orderBy(asc(locations.name), asc(beds.bedNumber)),
+        .orderBy(asc(locations.name), asc(rooms.name), asc(beds.bedNumber)),
     ]);
 
   const totalRooms = totalRoomsResult[0]?.value ?? 0;

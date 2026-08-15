@@ -69,7 +69,7 @@ export async function getReservationOptions(initialGuestId?: string) {
       .from(beds)
       .innerJoin(rooms, eq(beds.roomId, rooms.id))
       .leftJoin(locations, eq(rooms.locationId, locations.id))
-      .orderBy(asc(locations.name), asc(beds.bedNumber)),
+      .orderBy(asc(locations.name), asc(rooms.name), asc(beds.bedNumber)),
     db
       .select({
         id: reservations.id,

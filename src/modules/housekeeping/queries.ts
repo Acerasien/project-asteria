@@ -29,7 +29,7 @@ export async function getHousekeepingBoard(filters: HousekeepingFilters) {
       .leftJoin(reservations, and(eq(reservations.bedId, beds.id), eq(reservations.status, "CHECKED_IN")))
       .leftJoin(guests, eq(reservations.guestId, guests.id))
       .where(status ? eq(beds.status, status) : undefined)
-      .orderBy(asc(locations.name), asc(beds.bedNumber)),
+      .orderBy(asc(locations.name), asc(rooms.name), asc(beds.bedNumber)),
     db.select({ status: beds.status, value: count() }).from(beds).groupBy(beds.status),
   ]);
 
