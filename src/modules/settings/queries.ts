@@ -1,13 +1,13 @@
-import { asc, count, eq } from "drizzle-orm";
+import { and, asc, count, desc, eq } from "drizzle-orm";
 import { db } from "@/db/client";
-import { reservations, beds, rooms, users, locations } from "@/db/schema";
+import { reservations, beds, rooms, users, locations, guests } from "@/db/schema";
 import { verifySession } from "@/lib/dal";
 
-export type SettingsTab = "room-types" | "rooms" | "staff" | "locations";
+export type SettingsTab = "room-types" | "rooms" | "archived-rooms" | "staff" | "locations";
 
 export function parseSettingsTab(value: string | string[] | undefined): SettingsTab {
   const tab = Array.isArray(value) ? value[0] : value;
-  return tab === "rooms" || tab === "staff" || tab === "locations" ? tab : "room-types";
+  return tab === "rooms" || tab === "archived-rooms" || tab === "staff" || tab === "locations" ? tab : "room-types";
 }
 
 export async function getRoomTypeSettings() {
@@ -28,8 +28,38 @@ export async function getRoomSettings() {
     .from(beds)
     .innerJoin(rooms, eq(beds.roomId, rooms.id))
     .leftJoin(reservations, eq(beds.id, reservations.bedId))
+    .where(eq(beds.isActive, true))
     .groupBy(beds.id, rooms.name)
     .orderBy(asc(rooms.name), asc(beds.bedNumber));
+}
+
+export async function getArchivedRoomSettings() {
+  await verifySession("rooms:manage");
+  return db
+    .select({ id: beds.id, bedNumber: beds.bedNumber, status: beds.status, roomName: rooms.name, reservationCount: count(reservations.id) })
+    .from(beds)
+    .innerJoin(rooms, eq(beds.roomId, rooms.id))
+    .leftJoin(reservations, eq(beds.id, reservations.bedId))
+    .where(eq(beds.isActive, false))
+    .groupBy(beds.id, rooms.name)
+    .orderBy(asc(rooms.name), asc(beds.bedNumber));
+}
+
+export async function getBedReservationHistory(bedId: string) {
+  await verifySession("rooms:manage");
+  return db
+    .select({
+      id: reservations.id,
+      bookingCode: reservations.bookingCode,
+      checkInDate: reservations.checkInDate,
+      checkOutDate: reservations.checkOutDate,
+      status: reservations.status,
+      guestName: guests.fullName,
+    })
+    .from(reservations)
+    .innerJoin(guests, eq(reservations.guestId, guests.id))
+    .where(eq(reservations.bedId, bedId))
+    .orderBy(desc(reservations.checkInDate), desc(reservations.createdAt));
 }
 
 export async function getStaffSettings() {

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Plus, ChevronRight } from "lucide-react";
-import { getRoomSettings, getRoomTypeSettings, getStaffSettings, getLocationSettings, parseSettingsTab, type SettingsTab } from "@/modules/settings/queries";
+import { getRoomSettings, getArchivedRoomSettings, getRoomTypeSettings, getStaffSettings, getLocationSettings, parseSettingsTab, type SettingsTab } from "@/modules/settings/queries";
 import { RoomsList } from "./rooms-list";
+import { ArchivedRoomsList } from "./archived-rooms-list";
 import { LocationsList } from "./locations-list";
 import { SettingsMobileNav } from "./settings-nav";
 import { WipeDatabaseZone } from "./wipe-database-zone";
@@ -13,6 +14,7 @@ const tabCopy: Record<SettingsTab, { label: string; description: string; addLabe
   "room-types": { label: "Kamar", description: "Tentukan kamar dan lokasi untuk inventaris Anda.", addLabel: "Tambah kamar", addHref: "/dashboard/settings/room-types/new" },
   locations: { label: "Lokasi", description: "Kelola daftar lokasi bangunan atau lantai.", addLabel: "Tambah lokasi", addHref: "/dashboard/settings/locations/new" },
   rooms: { label: "Kasur", description: "Kelola inventaris kasur dan terapkan perubahan status operasional secara massal.", addLabel: "Tambah kasur", addHref: "/dashboard/settings/rooms/new" },
+  "archived-rooms": { label: "Arsip Kasur", description: "Tinjau inventaris kasur yang telah dinonaktifkan beserta riwayat reservasi mereka.", addLabel: "", addHref: "" },
   staff: { label: "Staf", description: "Kontrol akses staf dan tetapkan izin yang sesuai untuk setiap peran.", addLabel: "Tambah anggota staf", addHref: "/dashboard/settings/staff/new" },
 };
 
@@ -21,7 +23,15 @@ function roleLabel(role: "ADMIN" | "FRONT_DESK" | "HOUSEKEEPING") { return { ADM
 export default async function SettingsPage({ searchParams }: { searchParams: Promise<{ tab?: string | string[]; deleted?: string }> }) {
   const params = await searchParams;
   const tab = parseSettingsTab(params.tab);
-  const data = tab === "room-types" ? await getRoomTypeSettings() : tab === "rooms" ? await getRoomSettings() : tab === "locations" ? await getLocationSettings() : await getStaffSettings();
+  const data = tab === "room-types"
+    ? await getRoomTypeSettings()
+    : tab === "rooms"
+    ? await getRoomSettings()
+    : tab === "archived-rooms"
+    ? await getArchivedRoomSettings()
+    : tab === "locations"
+    ? await getLocationSettings()
+    : await getStaffSettings();
   const copy = tabCopy[tab];
   
   return <div className={styles.page}>
@@ -31,10 +41,12 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
         <h1>Pengaturan</h1>
         <p>{copy.description}</p>
       </div>
-      <Link href={copy.addHref} className={styles.primaryButton}>
-        <Plus size={17} aria-hidden="true" />
-        {copy.addLabel}
-      </Link>
+      {copy.addHref && copy.addLabel ? (
+        <Link href={copy.addHref} className={styles.primaryButton}>
+          <Plus size={17} aria-hidden="true" />
+          {copy.addLabel}
+        </Link>
+      ) : null}
     </header>
     
     <nav className={styles.tabs} aria-label="Bagian pengaturan">
@@ -47,16 +59,20 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
 
     <div className={styles.mobileNavRow}>
       <SettingsMobileNav currentTab={tab} />
-      <Link href={copy.addHref} className={styles.mobileCreateButton} aria-label={copy.addLabel}>
-        <Plus size={16} aria-hidden="true" />
-        <span>Tambah</span>
-      </Link>
+      {copy.addHref && copy.addLabel ? (
+        <Link href={copy.addHref} className={styles.mobileCreateButton} aria-label={copy.addLabel}>
+          <Plus size={16} aria-hidden="true" />
+          <span>Tambah</span>
+        </Link>
+      ) : null}
     </div>
 
     {params.deleted ? <div className={styles.successNotice}>Catatan telah dihapus.</div> : null}
     
     {tab === "rooms" ? (
       <RoomsList rooms={data as Awaited<ReturnType<typeof getRoomSettings>>} />
+    ) : tab === "archived-rooms" ? (
+      <ArchivedRoomsList rooms={data as Awaited<ReturnType<typeof getArchivedRoomSettings>>} />
     ) : tab === "locations" ? (
       <LocationsList locations={data as Awaited<ReturnType<typeof getLocationSettings>>} />
     ) : tab === "room-types" ? (

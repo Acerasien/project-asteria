@@ -105,6 +105,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
                           href={`/dashboard/reservations/${reservation.id}`}
                           className={styles.reservationBlock}
                           data-status={reservation.status}
+                          data-gender={reservation.guestGender}
                           style={{ gridColumn: `${startColumn} / span ${span}` }}
                           title={`${reservation.guestName} · ${reservation.bookingCode} · ${reservation.checkInDate} s/d ${reservation.checkOutDate} · ${nights} malam`}
                           aria-label={`${reservation.guestName}, ${reservation.bookingCode}, kasur ${room.number} di ${kamarName}, ${longDayLabel(reservation.checkInDate)} sampai ${longDayLabel(reservation.checkOutDate)}, ${nights} malam`}

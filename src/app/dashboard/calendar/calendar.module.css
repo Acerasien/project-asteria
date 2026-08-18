@@ -393,16 +393,42 @@
 }
 
 /* Semantic bar colours */
-.reservationBlock[data-status="CONFIRMED"] {
-  /* Rich indigo — matches DESIGN.md "confirmed reservation: indigo near #4F46E5" */
-  background: oklch(48% 0.21 262);
+/* Semantic bar colours by Status and Gender */
+
+/* 1. MALE (Blue) */
+.reservationBlock[data-gender="MALE"][data-status="CHECKED_IN"] {
+  background: oklch(56% 0.16 240);
+  border: 1px solid oklch(56% 0.16 240);
+  color: white;
 }
-.reservationBlock[data-status="CHECKED_IN"] {
-  /* Emerald — matches "Checked in: emerald near #059669" */
-  background: oklch(44% 0.13 160);
+.reservationBlock[data-gender="MALE"][data-status="CONFIRMED"] {
+  background: color-mix(in oklch, oklch(56% 0.16 240) 12%, var(--color-surface));
+  border: 1.5px solid oklch(56% 0.16 240);
+  color: oklch(56% 0.16 240);
 }
+.reservationBlock[data-gender="MALE"][data-status="CONFIRMED"] .blockNights {
+  background: color-mix(in oklch, oklch(56% 0.16 240) 15%, transparent);
+  color: oklch(56% 0.16 240);
+}
+
+/* 2. FEMALE (Pink) */
+.reservationBlock[data-gender="FEMALE"][data-status="CHECKED_IN"] {
+  background: oklch(62% 0.19 350);
+  border: 1px solid oklch(62% 0.19 350);
+  color: white;
+}
+.reservationBlock[data-gender="FEMALE"][data-status="CONFIRMED"] {
+  background: color-mix(in oklch, oklch(62% 0.19 350) 12%, var(--color-surface));
+  border: 1.5px solid oklch(62% 0.19 350);
+  color: oklch(62% 0.19 350);
+}
+.reservationBlock[data-gender="FEMALE"][data-status="CONFIRMED"] .blockNights {
+  background: color-mix(in oklch, oklch(62% 0.19 350) 15%, transparent);
+  color: oklch(62% 0.19 350);
+}
+
+/* 3. CHECKED_OUT (Neutral recedes) */
 .reservationBlock[data-status="CHECKED_OUT"] {
-  /* Neutral ghost — stay is over, visually recedes */
   color: var(--color-ink-secondary);
   background: var(--color-surface-subtle);
   border: 1px solid var(--color-border);

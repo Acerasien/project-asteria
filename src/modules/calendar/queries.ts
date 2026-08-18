@@ -46,6 +46,7 @@ export async function getCalendarData(searchParams: CalendarSearchParams) {
           bookingCode: reservations.bookingCode,
           roomId: reservations.bedId, // keep key roomId for UI compatibility for now
           guestName: guests.fullName,
+          guestGender: guests.gender,
           checkInDate: reservations.checkInDate,
           checkOutDate: reservations.checkOutDate,
           status: reservations.status,

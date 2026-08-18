@@ -15,8 +15,10 @@ export function SettingsMobileNav({ currentTab }: { currentTab: string }) {
         }}
         aria-label="Pilih kategori pengaturan"
       >
-        <option value="room-types">Tipe kamar</option>
-        <option value="rooms">Kamar</option>
+        <option value="room-types">Tipe Kamar</option>
+        <option value="rooms">Kasur</option>
+        <option value="archived-rooms">Arsip Kasur</option>
+        <option value="locations">Lokasi</option>
         <option value="staff">Staf</option>
       </select>
       <span className={styles.mobileSelectorChevron} aria-hidden="true">▾</span>
